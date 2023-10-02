@@ -1,0 +1,52 @@
+:root {
+	--board-spacing: 2rem;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	background-color: #F4F7FD;
+	margin: 0;
+}
+
+#main {
+	height: 100%;
+}
+
+#sidebar {
+	display: inline-block;
+	height: 100%;
+	background-color: #fff;
+	padding-inline-end: var(--board-spacing);
+}
+
+#logo {
+	margin-block-start: var(--board-spacing);
+	margin-block-end: 2.5rem;
+	margin-inline-start: var(--board-spacing);
+}
+
+#board-header {
+	margin-inline-start: var(--board-spacing);
+}
+
+.board-selector {
+	display: flex;
+	align-items: center;
+	width: 16rem;
+	border-end-end-radius: 3ch;
+	border-start-end-radius: 3ch;
+}
+
+.board-selector img {
+	margin-inline-start: var(--board-spacing);
+	margin-inline-end: 1rem;
+}
+
+.selected-board {
+	background-color: #635FC7;
+	color: #fff;
+}
