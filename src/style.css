@@ -136,12 +136,17 @@ body {
 	border-end-end-radius: 3ch;
 }
 
+.board-name:last-of-type {
+	color: var(--main-purple) !important;
+	background-color: var(--white) !important;
+}
+
 .board-name:hover {
 	background-color: var(--main-purple-hover);
 }
 
 .board-name img {
-	margin-inline-end: 1.2ch;
+	margin-inline-end: var(--board-spacing);
 }
 
 .board-name h3 {
@@ -151,4 +156,9 @@ body {
 .board-name-selected {
 	background-color: var(--main-purple);
 	color: var(--white);
+}
+
+#create-new-board-icon {
+	width: 1ch;
+	margin-inline-end: .3ch;
 }

@@ -30,6 +30,11 @@ export default function Sidebar() {
                         <img src="./assets/icons/icon-board.svg" />
                         <h3>Roadmap</h3>
                     </div>
+                    <div className="board-name">
+                        <img src="./assets/icons/icon-board-add.svg" />
+                        <img id="create-new-board-icon" src="./assets/icons/icon-add-board-mobile.svg" />
+                        <h3>Create New Board</h3>
+                    </div>
                 </div>
             </div>
         </div>
