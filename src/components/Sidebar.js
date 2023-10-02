@@ -32,8 +32,21 @@ export default function Sidebar() {
                     </div>
                     <div className="board-name">
                         <img src="./assets/icons/icon-board-add.svg" />
-                        <img id="create-new-board-icon" src="./assets/icons/icon-add-board-mobile.svg" />
+                        <img
+                            id="create-new-board-icon"
+                            src="./assets/icons/icon-add-board-mobile.svg"
+                        />
                         <h3>Create New Board</h3>
+                    </div>
+                    <div id="theme-container">
+                        <img src="./assets/icons/icon-light-theme.svg" />
+                        <div id="theme-toggler">
+                            <div id="theme-switch">
+                                <input id="theme-type" type="checkbox" />
+                                <label for="theme-type"></label>
+                            </div>
+                        </div>
+                        <img src="./assets/icons/icon-dark-theme.svg" />
                     </div>
                 </div>
             </div>
