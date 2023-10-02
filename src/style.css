@@ -133,13 +133,10 @@ body {
 	align-items: center;
 	padding-inline-start: var(--board-name-spacing);
 	margin-inline-end: 1.5rem;
+	padding-inline-end: 2rem;
+	padding-block: .3ch;
 	border-start-end-radius: 3ch;
 	border-end-end-radius: 3ch;
-}
-
-.board-name:last-of-type {
-	color: var(--main-purple) !important;
-	background-color: var(--white) !important;
 }
 
 .board-name:hover {
@@ -157,6 +154,11 @@ body {
 .board-name-selected {
 	background-color: var(--main-purple);
 	color: var(--white);
+}
+
+#create-board-btn {
+	background-color: var(--white) !important;
+	color: var(--main-purple) !important;
 }
 
 #create-new-board-icon {
