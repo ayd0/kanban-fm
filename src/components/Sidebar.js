@@ -1,12 +1,12 @@
 import { signal } from "@preact/signals";
 
 // pseudo-state
-const showBoardModal = signal(true);
-const boards = [
+const showBoardModal = signal(false);
+const boards = signal([
     { name: "Platform Launch", selected: signal(true), id: 0 },
     { name: "Marketing Plan", selected: signal(false), id: 1 },
     { name: "Raodmap", selected: signal(false), id: 2 },
-];
+]);
 const selectedBoard = signal(0);
 
 export default function Sidebar() {
@@ -17,7 +17,7 @@ export default function Sidebar() {
                 id="board-header"
                 onClick={() => (showBoardModal.value = !showBoardModal.value)}
             >
-                {boards[selectedBoard.value].name}
+                {boards.value[selectedBoard.value].name}
             </h2>
             <img
                 id="board-chevron"
@@ -39,14 +39,18 @@ export default function Sidebar() {
             >
                 <div id="board-header-list">
                     <h3 id="board-list-title">All Boards</h3>
-                    {boards.map((board) => {
+                    {boards.value.map((board) => {
                         return (
                             <div
                                 className={`board-name ${
-                                    board.selected.value ? "board-name-selected" : ""
+                                    board.selected.value
+                                        ? "board-name-selected"
+                                        : ""
                                 }`}
                                 onClick={() => {
-                                    boards[selectedBoard.value].selected.value = false;
+                                    boards.value[
+                                        selectedBoard.value
+                                    ].selected.value = false;
                                     selectedBoard.value = board.id;
                                     board.selected.value = true;
                                 }}
@@ -56,7 +60,11 @@ export default function Sidebar() {
                             </div>
                         );
                     })}
-                    <div id="create-board-btn" className="board-name">
+                    <div
+                        id="create-board-btn"
+                        className="board-name"
+                        onClick={() => ""}
+                    >
                         <img src="./assets/icons/icon-board-add.svg" />
                         <img
                             id="create-new-board-icon"
