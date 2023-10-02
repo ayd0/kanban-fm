@@ -4,18 +4,18 @@ export default function NewBoard() {
             <div id="new-board-list">
                 <h3>Add New Board</h3>
                 <h4>Board Name</h4>
-                <input type="text" />
+                <input type="text" placeholder="e.g. Web Design" />
                 <h4>Board Columns</h4>
                 <div>
-                    <input type="text" />
-                    <img src="./assets/icons/icon-cross.svg" />
+                    <input type="text" value="Todo" />
+                    <img className="board-col-delete-btn" src="./assets/icons/icon-cross.svg" />
                 </div>
                 <div>
-                    <input type="text" />
-                    <img src="./assets/icons/icon-cross.svg" />
+                    <input type="text" value="Doing" />
+                    <img className="board-col-delete-btn" src="./assets/icons/icon-cross.svg" />
                 </div>
-                <button>Add New Column</button>
-                <button>Create New Board</button>
+                <button id="add-column-btn"><img src="./assets/icons/icon-add-board-mobile.svg" />Add New Column</button>
+                <button id="add-board-btn">Create New Board</button>
             </div>
         </div>
     );

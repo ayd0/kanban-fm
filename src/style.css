@@ -1,5 +1,6 @@
 :root {
 	--main-purple: #635FC7;
+	--main-purple-light: rgba(99, 95, 199, .1);
 	--main-purple-hover: #A8A4FF;
 	--black: #000112;
 	--very-dark-grey: #20212C;
@@ -242,7 +243,68 @@ body {
 	flex-flow: column;
 	background-color: var(--white);
 	padding: var(--board-spacing);
-	margin: var(--board-spacing);
+	margin-inline: var(--board-spacing);
+	border-radius: 1ch;
+}
+
+#new-board-list h4 {
+	color: var(--medium-grey);
+	font-size: 10px;
+	margin-block-end: 1ch;
+}
+
+#new-board-list div {
+	display: flex;
+	align-items: center;
+}
+
+#new-board-list div + div {
+	margin-block: 1ch;
+}
+
+#new-board-list input {
+	border: 2px solid var(--light-grey);
+	color: var(--black);
+	padding-inline: 1rem;
+	padding-block: 1ch;
+	width: 100%;
+}
+
+#new-board-list input::placeholder {
+	color: var(--medium-grey);
+}
+
+.board-col-delete-btn {
+	margin-inline-start: 1rem;
+}
+
+#new-board-list button {
+	border-radius: 3ch;
+	padding-block: 1.5ch;
+	border: none;
+}
+
+#new-board-list button + button {
+	margin-block-start: 1.5rem;
+}
+
+#add-column-btn {
+	background-color: var(--main-purple-light);
+	color: var(--main-purple);
+	font-family: 'PlusJakartaSans-Bold';
+	font-size: 12px;
+}
+
+#add-column-btn img {
+	width: .9ch;
+	margin-inline-end: .3ch;
+}
+
+#add-board-btn {
+	background-color: var(--main-purple);
+	color: var(--white);
+	font-family: 'PlusJakartaSans-Bold';
+	font-size: 12px;
 }
 
 /* NEW BOARD END */
