@@ -12,7 +12,8 @@
 	--red: #EA5555;
 	--red-hover: #FF9898;
 	
-	--board-spacing: 2rem;
+	--board-spacing: 1rem;
+	--board-name-spacing: 1.5rem;
 }
 
 @font-face {
@@ -28,31 +29,37 @@
 p {
 	font-family: 'PlusJakartaSans-Medium';
 	font-size: 13px;
+	line-height: 23px;
 }
 
 p .bold {
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
+	line-height: 15px;
 }
 
 h1 {
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 24px;
+	line-height: 30px;
 }
 
 h2 {
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 18px;
+	line-height: 23px;
 }
 
 h3 {
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 15px;
+	line-height: 19px;
 }
 
 h4 {
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
+	line-height: 15px;
 }
 
 * {
@@ -70,46 +77,78 @@ body {
 }
 
 #sidebar {
-	display: inline-block;
-	height: 100%;
+	display: flex;
+	position: relative;
+	align-items: center;
 	background-color: var(--white);
-	padding-inline-end: var(--board-spacing);
+	padding: var(--board-spacing);
 }
 
 #logo {
-	margin-block-start: var(--board-spacing);
-	margin-block-end: 2.5rem;
-	margin-inline-start: var(--board-spacing);
+	margin-inline-end: var(--board-spacing);
 }
 
 #board-header {
-	margin-inline-start: var(--board-spacing);
-	letter-spacing: .3ch;
+	color: var(--black);
+}
+
+#board-chevron {
+	margin-inline-start: 1ch;
+}
+
+#add-task-btn {
+	padding-block: 1.5ch;
+	padding-inline: 1.3rem;
+	border-radius: 3ch;
+	background: var(--main-purple);
+	margin-inline-start: auto;
+	margin-inline-end: var(--board-spacing);
+}
+
+#board-header-container {
+	position: absolute;	
+	top: 120%;
+	left: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+#board-header-list {
+	display: inline-block;
+	background-color: var(--white);
+	border-radius: 1ch;
 	color: var(--medium-grey);
 }
 
-.board-selector {
-	display: flex;
-	align-items: center;
-	width: 16rem;
-	border-end-end-radius: 3ch;
-	border-start-end-radius: 3ch;
+#board-list-title {
+	letter-spacing: 2px;
+	margin-inline-start: var(--board-name-spacing);
 }
 
-.board-selector:hover {
+.board-name {
+	display: flex;
+	align-items: center;
+	padding-inline-start: var(--board-name-spacing);
+	padding-inline-end: 3rem;
+	margin-inline-end: 1.5rem;
+	border-start-end-radius: 3ch;
+	border-end-end-radius: 3ch;
+}
+
+.board-name:hover {
 	background-color: var(--main-purple-hover);
 }
 
-.board-selector:hover p {
-	color: var(--white);
+.board-name img {
+	margin-inline-end: 1.2ch;
 }
 
-.board-selector img {
-	margin-inline-start: var(--board-spacing);
-	margin-inline-end: 1rem;
+.board-name h3 {
+	margin-block: 1ch;
 }
 
-.selected-board {
-	background-color: var(--main-purple) !important;
+.board-name-selected {
+	background-color: var(--main-purple);
 	color: var(--white);
 }
