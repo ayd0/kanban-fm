@@ -2,14 +2,14 @@ import { signal } from "@preact/signals";
 
 // pseudo-state
 const showBoardModal = signal(true);
+const boards = [
+    { name: "Platform Launch", selected: signal(true), id: 0 },
+    { name: "Marketing Plan", selected: signal(false), id: 1 },
+    { name: "Raodmap", selected: signal(false), id: 2 },
+];
+const selectedBoard = signal(0);
 
 export default function Sidebar() {
-    // pseudo-state
-    const boards = [{ name: "Platform Launch" }];
-    let selectedBoard = 0;
-
-    console.log(showBoardModal.value);
-
     return (
         <div id="sidebar">
             <img id="logo" src="./assets/icons/logo-mobile.svg" />
@@ -17,7 +17,7 @@ export default function Sidebar() {
                 id="board-header"
                 onClick={() => (showBoardModal.value = !showBoardModal.value)}
             >
-                Platform Launch
+                {boards[selectedBoard.value].name}
             </h2>
             <img
                 id="board-chevron"
@@ -39,18 +39,23 @@ export default function Sidebar() {
             >
                 <div id="board-header-list">
                     <h3 id="board-list-title">All Boards</h3>
-                    <div className="board-name board-name-selected">
-                        <img src="./assets/icons/icon-board-selected.svg" />
-                        <h3>Platform Launch</h3>
-                    </div>
-                    <div className="board-name">
-                        <img src="./assets/icons/icon-board.svg" />
-                        <h3>Marketing Plan</h3>
-                    </div>
-                    <div className="board-name">
-                        <img src="./assets/icons/icon-board.svg" />
-                        <h3>Roadmap</h3>
-                    </div>
+                    {boards.map((board) => {
+                        return (
+                            <div
+                                className={`board-name ${
+                                    board.selected.value ? "board-name-selected" : ""
+                                }`}
+                                onClick={() => {
+                                    boards[selectedBoard.value].selected.value = false;
+                                    selectedBoard.value = board.id;
+                                    board.selected.value = true;
+                                }}
+                            >
+                                <img src="./assets/icons/icon-board.svg" />
+                                <h3>{board.name}</h3>
+                            </div>
+                        );
+                    })}
                     <div id="create-board-btn" className="board-name">
                         <img src="./assets/icons/icon-board-add.svg" />
                         <img
