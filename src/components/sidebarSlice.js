@@ -1,4 +1,6 @@
-import { signal } from "@preact/signals";
+import { signal, computed } from "@preact/signals";
+
+
 
 const createSidebarState = () => {
     const showBoardModal = signal(false);
@@ -11,7 +13,26 @@ const createSidebarState = () => {
         { name: "Roadmap", selected: signal(false), id: 2 },
     ]);
 
-    return { showBoardModal, showSidebar, selectedBoard, boards };
+    const numBoards = signal(() => boards.value.length);
+
+    const createBoard = (boardName) => {
+        let board = {
+            name: boardName,
+            selected: signal(false),
+            id: numBoards.value(),
+        };
+
+        boards.value = [...boards.value, board];
+    };
+
+    return {
+        showBoardModal,
+        showSidebar,
+        selectedBoard,
+        boards,
+        numBoards,
+        createBoard,
+    };
 };
 
 export default createSidebarState;

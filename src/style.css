@@ -132,6 +132,7 @@ body {
 	color: var(--medium-grey);
 	padding-block: var(--board-spacing);
 	height: fit-content;
+	margin-block-start: 1rem;
 }
 
 #board-list-title {
@@ -242,6 +243,10 @@ body {
 	border-start-end-radius: 3ch;
 	border-end-end-radius: 3ch;
 	cursor: pointer;
+}
+
+#show-sidebar-btn:hover {
+	background-color: var(--main-purple-hover);
 }
 
 /* SIDEBAR END */
@@ -436,6 +441,7 @@ body {
 		flex-flow: column;
 		align-items: flex-start;
 		height: 100%;
+		margin-block-start: 0;
 	}
 
 	.board-name {

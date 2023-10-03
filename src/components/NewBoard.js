@@ -1,6 +1,10 @@
 export default function NewBoard({ state }) {
     // global state
-    const { showNewBoard, newBoardName } = state;
+    const { showNewBoard, newBoardName } = state.newBoard;
+    const createBoard = state.createBoard;
+
+    // local state
+    let boardName = '';
 
     return (
         <div
@@ -10,7 +14,7 @@ export default function NewBoard({ state }) {
             <div id="new-board-list">
                 <h3>Add New Board</h3>
                 <h4>Board Name</h4>
-                <input type="text" placeholder="e.g. Web Design" />
+                <input onChange={(e) => boardName = e.target.value} type="text" placeholder="e.g. Web Design" />
                 <h4>Board Columns</h4>
                 <div>
                     <input type="text" value="Todo" />
@@ -30,7 +34,10 @@ export default function NewBoard({ state }) {
                     <img src="./assets/icons/icon-add-board-mobile.svg" />
                     Add New Column
                 </button>
-                <button id="add-board-btn" onClick={() => showNewBoard.value = false}>Create New Board</button>
+                <button id="add-board-btn" onClick={() => {
+                    createBoard(boardName);
+                    showNewBoard.value = false}
+                    }>Create New Board</button>
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
-import { useSignal, signal } from "@preact/signals";
+import { useSignal } from "@preact/signals";
 
 export default function Sidebar({ state }) {
     // global state
     const showNewBoard = state.showNewBoard;
-    const { showBoardModal, showSidebar, selectedBoard, boards } =
+    const { showBoardModal, showSidebar, selectedBoard, boards, numBoards } =
         state.sidebar;
     const hideSidebar = state.hideSidebar;
 
@@ -30,6 +30,28 @@ export default function Sidebar({ state }) {
             );
         });
     };
+
+    const mapBoard = (board) => {
+            let imageStyle = "";
+            return (
+                <div
+                    className={`board-name ${
+                        board.selected.value ? "board-name-selected" : ""
+                    }`}
+                    onClick={() => {
+                        boards.value[
+                            selectedBoard.value
+                        ].selected.value = false;
+                        selectedBoard.value = board.id;
+                        board.selected.value = true;
+                        imageStyle = imageStyle === "" ? "-selected" : "";
+                    }}
+                >
+                    <img src={`./assets/icons/icon-board.svg${imageStyle}`} />
+                    <h3>{board.name}</h3>
+                </div>
+            );
+    }
 
     return (
         <div>
@@ -75,8 +97,15 @@ export default function Sidebar({ state }) {
                     style={`display: ${showBoardModal.value ? "flex" : "none"}`}
                 >
                     <div id="board-header-list">
-                        <h3 id="board-list-title">All Boards</h3>
-                        {mapBoards()}
+                        <h3 id="board-list-title">
+                            All Boards
+                            {numBoards.value() > 0
+                                ? ` (${numBoards.value()})`
+                                : ""}
+                        </h3>
+                        {boards.value.map((board) => {
+                            return mapBoard(board);
+                        })}
                         <div
                             id="create-board-btn"
                             className="board-name"

@@ -29,7 +29,10 @@ export default function App() {
                 />
                 <Kanban />
             </div>
-            <NewBoard state={state.newBoard} />
+            <NewBoard state={{
+                newBoard: state.newBoard,
+                createBoard: state.sidebar.createBoard
+                }} />
         </div>
     );
 }
