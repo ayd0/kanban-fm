@@ -1,16 +1,9 @@
 import { signal } from "@preact/signals";
 
-// pseudo-state
-const showBoardModal = signal(false);
-const boards = signal([
-    { name: "Platform Launch", selected: signal(true), id: 0 },
-    { name: "Marketing Plan", selected: signal(false), id: 1 },
-    { name: "Raodmap", selected: signal(false), id: 2 },
-]);
-const selectedBoard = signal(0);
-
 export default function Sidebar({ state }) {
+    // global state
     const showNewBoard = state.showNewBoard;
+    const { showBoardModal, selectedBoard, boards } = state.sidebar;
 
     return (
         <div id="sidebar">

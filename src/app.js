@@ -9,7 +9,7 @@ export default function App() {
 
     return (
         <div id="main">
-            <Sidebar state={{showNewBoard: state.newBoard.showNewBoard}} />
+            <Sidebar state={{showNewBoard: state.newBoard.showNewBoard, sidebar: state.sidebar}} />
             <NewBoard state={state.newBoard} />
         </div>
     );
