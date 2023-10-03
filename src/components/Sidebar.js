@@ -9,7 +9,9 @@ const boards = signal([
 ]);
 const selectedBoard = signal(0);
 
-export default function Sidebar() {
+export default function Sidebar({ state }) {
+    const showNewBoard = state.showNewBoard;
+
     return (
         <div id="sidebar">
             <img id="logo" src="./assets/icons/logo-mobile.svg" />
@@ -63,7 +65,10 @@ export default function Sidebar() {
                     <div
                         id="create-board-btn"
                         className="board-name"
-                        onClick={() => ""}
+                        onClick={() => {
+                            showBoardModal.value = false;
+                            showNewBoard.value = true;
+                        }}
                     >
                         <img src="./assets/icons/icon-board-add.svg" />
                         <img
