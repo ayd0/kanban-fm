@@ -75,6 +75,8 @@ body {
 }
 
 #main {
+	display: flex;
+	flex-flow: column;
 	height: 100%;
 }
 
@@ -222,7 +224,23 @@ body {
 	left: 3.05ch;
 }
 
+#sidebar-toggler {
+	display: none;
+}
+
 /* BOARD DISPLAY END */
+
+#show-sidebar-btn {
+	background-color: var(--main-purple);
+	position: absolute;
+	bottom: 2rem;
+	padding: 1rem;
+	padding-inline-end: 1.5rem;
+	border-start-end-radius: 3ch;
+	border-end-end-radius: 3ch;
+	cursor: pointer;
+}
+
 /* SIDEBAR END */
 /* TOPBAR START */
 
@@ -233,6 +251,45 @@ body {
 }
 
 /* TOPBAR END */
+/* KANBAN START */
+
+#content-container {
+	display: flex;
+	flex-flow: column;
+	width: 100%;
+	height: 80%;
+	overflow: hidden;
+}
+
+#kanban-container {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+}
+
+#kanban-container h2 {
+	max-width: 20rem;
+	text-align: center;
+	color: var(--medium-grey);
+}
+
+#kanban-container button {
+	border: none;
+	background-color: var(--main-purple);
+	color: var(--white);
+	padding-block: 1.5ch;
+	padding-inline: 1rem;
+	border-radius: 3ch;
+}
+
+#kanban-container button img {
+	width: 1ch;
+	margin-inline-end: .5ch;
+}
+
+/* KANBAN END */
 /* NEW BOARD START */
 
 #new-board-container {
@@ -318,9 +375,9 @@ body {
 
 /* NEW BOARD END */
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 670px) {
 	#main {
-		display: flex;
+		flex-flow: row;
 	}
 
 	#sidebar {
@@ -370,6 +427,7 @@ body {
 	.board-name {
 		justify-content: flex-start;
 		width: 15rem;
+		cursor: pointer;
 	}
 
 	#theme-container {
