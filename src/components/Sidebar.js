@@ -5,6 +5,29 @@ export default function Sidebar({ state }) {
     const showNewBoard = state.showNewBoard;
     const { showBoardModal, selectedBoard, boards } = state.sidebar;
 
+    // local state
+    const mapBoards = () => {
+        return boards.value.map((board) => {
+            return (
+                <div
+                    className={`board-name ${
+                        board.selected.value ? "board-name-selected" : ""
+                    }`}
+                    onClick={() => {
+                        boards.value[
+                            selectedBoard.value
+                        ].selected.value = false;
+                        selectedBoard.value = board.id;
+                        board.selected.value = true;
+                    }}
+                >
+                    <img src="./assets/icons/icon-board.svg" />
+                    <h3>{board.name}</h3>
+                </div>
+            );
+        });
+    };
+
     return (
         <div id="sidebar">
             <img id="logo" src="./assets/icons/logo-mobile.svg" />
@@ -34,27 +57,7 @@ export default function Sidebar({ state }) {
             >
                 <div id="board-header-list">
                     <h3 id="board-list-title">All Boards</h3>
-                    {boards.value.map((board) => {
-                        return (
-                            <div
-                                className={`board-name ${
-                                    board.selected.value
-                                        ? "board-name-selected"
-                                        : ""
-                                }`}
-                                onClick={() => {
-                                    boards.value[
-                                        selectedBoard.value
-                                    ].selected.value = false;
-                                    selectedBoard.value = board.id;
-                                    board.selected.value = true;
-                                }}
-                            >
-                                <img src="./assets/icons/icon-board.svg" />
-                                <h3>{board.name}</h3>
-                            </div>
-                        );
-                    })}
+                    {mapBoards()}
                     <div
                         id="create-board-btn"
                         className="board-name"
