@@ -308,3 +308,66 @@ body {
 }
 
 /* NEW BOARD END */
+
+@media only screen and (min-width: 600px) {
+	#sidebar {
+		display: flex;
+		flex-flow: column;
+		align-items: flex-start;
+		width: fit-content;
+		height: 100%;
+		padding: 0;
+	}
+
+	#logo {
+		margin-inline-start: 1.5rem;
+		margin-block: 2rem;
+	}
+
+	#board-header {
+		display: none;
+	}
+
+	#board-chevron {
+		display: none;
+	}
+
+	#add-task-btn {
+		display: none;
+	}
+
+	#board-settings {
+		display: none;
+	}
+
+	#board-header-container {
+		position: relative !important;
+		display: flex !important;
+		top: 0;
+		left: 0;
+		height: 100%;
+	}
+
+	#board-header-list {
+		display: flex;
+		flex-flow: column;
+		align-items: flex-start;
+	}
+
+	#theme-container {
+		margin-block-start: auto;
+		margin-inline: 1rem;
+		align-self: center;
+		width: 90%;
+	}
+
+	#sidebar-toggler {
+		display: flex;
+		align-items: center;
+		margin-inline-start: 1.5rem;
+	}
+
+	#sidebar-toggler img {
+		margin-inline-end: 1rem;
+	}
+}

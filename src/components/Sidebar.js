@@ -30,7 +30,17 @@ export default function Sidebar({ state }) {
 
     return (
         <div id="sidebar">
-            <img id="logo" src="./assets/icons/logo-mobile.svg" />
+            <picture>
+                <source
+                    media="(max-width: 599px)"
+                    srcset="./assets/icons/logo-mobile.svg"
+                ></source>
+                <source
+                    media="(min-width: 600px)"
+                    srcset="./assets/icons/logo-dark.svg"
+                ></source>
+                <img id="logo" src="./assets/icons/logo-mobile.svg" />
+            </picture>
             <h2
                 id="board-header"
                 onClick={() => (showBoardModal.value = !showBoardModal.value)}
@@ -82,6 +92,10 @@ export default function Sidebar({ state }) {
                             </div>
                         </div>
                         <img src="./assets/icons/icon-dark-theme.svg" />
+                    </div>
+                    <div id="sidebar-toggler">
+                        <img src="./assets/icons/icon-hide-sidebar.svg" />
+                        <h3>Hide Sidebar</h3>
                     </div>
                 </div>
             </div>
