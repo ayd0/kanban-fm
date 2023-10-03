@@ -226,6 +226,12 @@ body {
 /* SIDEBAR END */
 /* TOPBAR START */
 
+#topbar-container {
+	display: none;
+	width: 100%;
+	background-color: var(--white); 
+}
+
 /* TOPBAR END */
 /* NEW BOARD START */
 
@@ -313,6 +319,10 @@ body {
 /* NEW BOARD END */
 
 @media only screen and (min-width: 600px) {
+	#main {
+		display: flex;
+	}
+
 	#sidebar {
 		display: flex;
 		flex-flow: column;
@@ -378,5 +388,37 @@ body {
 
 	#sidebar-toggler img {
 		margin-inline-end: 1rem;
+	}
+
+	#topbar-container {
+		display: flex;
+		align-items: center;
+		height: fit-content;
+		margin-inline-start: .2ch;
+	}
+
+	#topbar-container h1 {
+		margin-inline-start: 1rem;
+	}
+
+	#topbar-container button {
+		margin-inline-start: auto;
+		border: none;
+		background-color: var(--main-purple);
+		color: var(--white);
+		padding-block: 1.5ch;
+		padding-inline: 1rem;
+		border-radius: 3ch;
+		margin-inline-end: 1rem;
+		margin-block: 1.6rem;
+	}
+
+	#topbar-container button img {
+		width: 1ch;
+		margin-inline-end: .5ch;
+	}
+
+	#topbar-container img {
+		margin-inline-end: 2ch;
 	}
 }

@@ -7,7 +7,7 @@ const createSidebarState = () => {
     const boards = signal([
         { name: "Platform Launch", selected: signal(true), id: 0 },
         { name: "Marketing Plan", selected: signal(false), id: 1 },
-        { name: "Raodmap", selected: signal(false), id: 2 },
+        { name: "Roadmap", selected: signal(false), id: 2 },
     ]);
 
     return { showBoardModal, selectedBoard, boards };
