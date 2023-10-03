@@ -116,11 +116,13 @@ body {
 
 #board-header-container {
 	position: absolute;
-	top: 120%;
+	top: 100%;
 	left: 0;
 	width: 100%;
+	height: calc(100vh - (2rem + 26px + 1.66em));
 	display: flex;
 	justify-content: center;
+	background-color: var(--dark-overlay);
 }
 
 #board-header-list {
@@ -129,6 +131,7 @@ body {
 	border-radius: 1ch;
 	color: var(--medium-grey);
 	padding-block: var(--board-spacing);
+	height: fit-content;
 }
 
 #board-list-title {
@@ -416,12 +419,14 @@ body {
 		top: 0;
 		left: 0;
 		height: 100%;
+		background: none;
 	}
 
 	#board-header-list {
 		display: flex;
 		flex-flow: column;
 		align-items: flex-start;
+		height: 100%;
 	}
 
 	.board-name {
@@ -478,5 +483,14 @@ body {
 
 	#topbar-container img {
 		margin-inline-end: 2ch;
+	}
+
+	#new-board-container {
+		display: flex;
+		align-items: center;
+	}
+
+	#new-board-list {
+		width: 25rem;
 	}
 }
