@@ -251,6 +251,14 @@ body {
 	display: none;
 	width: 100%;
 	background-color: var(--white); 
+	border-block-end: .3ch solid var(--lines-light);
+}
+
+#logo-divider {
+	height: 100%;
+	align-items: center;
+	border-inline-end: .3ch solid var(--lines-light);
+	padding-inline: 1.5rem;
 }
 
 /* TOPBAR END */
@@ -260,7 +268,7 @@ body {
 	display: flex;
 	flex-flow: column;
 	width: 100%;
-	height: 80%;
+	height: 100%;
 	overflow: hidden;
 }
 
@@ -390,6 +398,7 @@ body {
 		width: fit-content;
 		height: 100%;
 		padding: 0;
+		border-inline-end: .3ch solid var(--lines-light);
 	}
 
 	#logo {
@@ -457,11 +466,10 @@ body {
 		display: flex;
 		align-items: center;
 		height: fit-content;
-		margin-inline-start: .2ch;
 	}
 
 	#topbar-container h1 {
-		margin-inline-start: 1rem;
+		margin-inline-start: 1.5rem;
 	}
 
 	#topbar-container button {

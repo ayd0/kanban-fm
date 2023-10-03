@@ -22,6 +22,7 @@ export default function App() {
             <div id="content-container">
                 <Topbar
                     state={{
+                        showSidebar: state.sidebar.showSidebar,
                         selectedBoard: state.sidebar.selectedBoard,
                         boards: state.sidebar.boards,
                     }}
