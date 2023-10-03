@@ -224,6 +224,9 @@ body {
 
 /* BOARD DISPLAY END */
 /* SIDEBAR END */
+/* TOPBAR START */
+
+/* TOPBAR END */
 /* NEW BOARD START */
 
 #new-board-container {
@@ -354,6 +357,11 @@ body {
 		align-items: flex-start;
 	}
 
+	.board-name {
+		justify-content: flex-start;
+		width: 15rem;
+	}
+
 	#theme-container {
 		margin-block-start: auto;
 		margin-inline: 1rem;
@@ -365,6 +373,7 @@ body {
 		display: flex;
 		align-items: center;
 		margin-inline-start: 1.5rem;
+		cursor: pointer;
 	}
 
 	#sidebar-toggler img {
