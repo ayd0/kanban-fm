@@ -7,23 +7,10 @@ import { useSignal } from "@preact/signals";
 
 export default function NewTask({ state }) {
     // global state
-    const showNewTask = state.newTask.showNewTask;
+    const { showNewTask, subtaskList, taskStatusList, selectedTaskName } = state.newTask;
 
     // local state
     const showDropdown = useSignal(false);
-
-    // pseudo-state
-    const subtaskList = useSignal([
-        { name: "", id: 0 },
-        { name: "", id: 1 },
-    ]);
-
-    const taskStatusList = [
-        { name: "Todo", id: 0 },
-        { name: "Doing", id: 1 },
-        { name: "Done", id: 2 },
-    ];
-    const selectedTaskName = useSignal("Todo");
 
     return (
         <div
