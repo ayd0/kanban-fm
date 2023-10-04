@@ -389,7 +389,7 @@ body {
 }
 
 #new-board-list div + div, #new-task-list div + div {
-	margin-block: 1ch;
+	margin-block-start: 1ch;
 }
 
 #new-board-list input, #new-task-list input, #new-task-list textarea {
@@ -423,6 +423,7 @@ body {
 	color: var(--main-purple);
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
+	margin-block-start: 1ch;
 }
 
 #add-column-btn img, #add-subtask-btn img {

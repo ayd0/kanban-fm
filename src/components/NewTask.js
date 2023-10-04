@@ -8,6 +8,8 @@ export default function NewTask({ state }) {
     const showDropdown = useSignal(false);
 
     // pseudo-state
+    const subtaskList = useSignal([{ name: "" }, { name: "" }]);
+
     const taskStatusList = [
         { name: "Todo", id: 0 },
         { name: "Doing", id: 1 },
@@ -16,7 +18,10 @@ export default function NewTask({ state }) {
     const selectedTaskName = useSignal("Todo");
 
     return (
-        <div id="new-task-container" style={`display: ${showNewTask.value ? "flex" : "none"}`}>
+        <div
+            id="new-task-container"
+            style={`display: ${showNewTask.value ? "flex" : "flex"}`}
+        >
             <div id="new-task-list">
                 <h3>Add New Task</h3>
                 <h4>Title</h4>
@@ -27,42 +32,71 @@ export default function NewTask({ state }) {
                     placeholder="e.g. it's always good to take a break. This 15 minute break will recharge the batteries a little."
                 />
                 <h4>Subtasks</h4>
-                <div>
-                    <input type="text" placeholder="e.g. Make Coffee" />
-                    <img
-                        className="task-col-delete-btn"
-                        src="./assets/icons/icon-cross.svg"
-                    />
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        placeholder="e.g. Drink coffee & smile"
-                    />
-                    <img
-                        className="task-col-delete-btn"
-                        src="./assets/icons/icon-cross.svg"
-                    />
-                </div>
+                {subtaskList.value.map((subTask, idx) => {
+                    return (
+                        <div>
+                            <input
+                                type="text"
+                                value={subTask.name}
+                                placeholder="e.g. Make Coffee"
+                            />
+                            <img
+                                className="task-col-delete-btn"
+                                src="./assets/icons/icon-cross.svg"
+                                onClick={() => {
+                                    // not working
+                                    console.log(subtaskList.value.length);
+                                    subtaskList.value =
+                                        subtaskList.value.length === 1
+                                            ? []
+                                            : subtaskList.value.splice(idx, 1);
+                                    console.log(subtaskList.value.length);
+                                }}
+                            />
+                        </div>
+                    );
+                })}
                 <button id="add-subtask-btn">
                     <img src="./assets/icons/icon-add-board-mobile.svg" />
-                    Add New Column
+                    Add New Subtask
                 </button>
                 <h4>Status</h4>
-                <div class="dropdown" onClick={() => showDropdown.value = !showDropdown.value}>
+                <div
+                    class="dropdown"
+                    onClick={() => (showDropdown.value = !showDropdown.value)}
+                >
                     <p>{selectedTaskName.value}</p>
-                    <img src={`./assets/icons/icon-chevron-${showDropdown.value ? "up" : "down"}.svg`} />
-                    <div class="dropdown-content" style={`display: ${showDropdown.value ? "flex" : "none"}`}>
-                        {taskStatusList.map(taskStatus => {
+                    <img
+                        src={`./assets/icons/icon-chevron-${
+                            showDropdown.value ? "up" : "down"
+                        }.svg`}
+                    />
+                    <div
+                        class="dropdown-content"
+                        style={`display: ${
+                            showDropdown.value ? "flex" : "none"
+                        }`}
+                    >
+                        {taskStatusList.map((taskStatus) => {
                             return (
-                                <p onClick={() => {
-                                    selectedTaskName.value = taskStatus.name;
-                                }}>{taskStatus.name}</p>
-                            )
+                                <p
+                                    onClick={() => {
+                                        selectedTaskName.value =
+                                            taskStatus.name;
+                                    }}
+                                >
+                                    {taskStatus.name}
+                                </p>
+                            );
                         })}
                     </div>
                 </div>
-                <button id="new-task-btn" onClick={() => showNewTask.value = false}>Create New Task</button>
+                <button
+                    id="new-task-btn"
+                    onClick={() => (showNewTask.value = false)}
+                >
+                    Create New Task
+                </button>
             </div>
         </div>
     );
