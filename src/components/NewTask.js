@@ -1,6 +1,19 @@
+import { useSignal } from "@preact/signals";
+
 export default function NewTask({ state }) {
     // global state
     const showNewTask = state.newTask.showNewTask;
+
+    // local state
+    const showDropdown = useSignal(false);
+
+    // pseudo-state
+    const taskStatusList = [
+        { name: "Todo", id: 0 },
+        { name: "Doing", id: 1 },
+        { name: "Done", id: 2 },
+    ];
+    const selectedTaskName = useSignal("Todo");
 
     return (
         <div id="new-task-container" style={`display: ${showNewTask.value ? "flex" : "none"}`}>
@@ -36,7 +49,19 @@ export default function NewTask({ state }) {
                     Add New Column
                 </button>
                 <h4>Status</h4>
-                <input type="text" value="Todo" />
+                <div class="dropdown" onClick={() => showDropdown.value = !showDropdown.value}>
+                    <p>{selectedTaskName.value}</p>
+                    <img src={`./assets/icons/icon-chevron-${showDropdown.value ? "up" : "down"}.svg`} />
+                    <div class="dropdown-content" style={`display: ${showDropdown.value ? "flex" : "none"}`}>
+                        {taskStatusList.map(taskStatus => {
+                            return (
+                                <p onClick={() => {
+                                    selectedTaskName.value = taskStatus.name;
+                                }}>{taskStatus.name}</p>
+                            )
+                        })}
+                    </div>
+                </div>
                 <button id="new-task-btn" onClick={() => showNewTask.value = false}>Create New Task</button>
             </div>
         </div>

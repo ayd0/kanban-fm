@@ -445,10 +445,52 @@ body {
 	margin-block-start: 1.5rem;
 }
 
-/* NEW BOARD END */
-/* NEW TASK START */
+.dropdown {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 2px solid var(--light-grey);
+	border-radius: .5ch;
+	padding-block: .5rem;
+	padding-inline: 1rem;
+}
 
-/* NEW TASK END */
+.dropdown * {
+	margin: 0;
+}
+
+.dropdown-content {
+	position: absolute;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start !important;
+	top: 100%;
+	left: 0;
+	background-color: var(--white);
+	width: 100%;
+	border: 1px solid var(--medium-grey);
+	padding-block: 1rem;
+	margin-block-start: 1rem;
+	border-radius: 1ch;
+}
+
+.dropdown-content p {
+	width: 100%;
+	padding-inline: 1rem;
+	color: var(--medium-grey)
+}
+
+.dropdown-content p:hover {
+	background-color: var(--main-purple-light);
+	color: var(--black);
+}
+
+.dropdown-content p + p {
+	margin-block-start: .5ch;
+}
+
+/* NEW BOARD END */
 
 @media only screen and (min-width: 670px) {
 	#main {
