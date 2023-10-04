@@ -8,10 +8,10 @@ export default function NewBoard({ state }) {
 
     return (
         <div
-            id="new-board-container"
+            className="modal-container"
             style={`display: ${showNewBoard.value ? "flex" : "none"}`}
         >
-            <div id="new-board-list">
+            <div className="modal-list">
                 <h3>Add New Board</h3>
                 <h4>Board Name</h4>
                 <input onChange={(e) => boardName = e.target.value} type="text" placeholder="e.g. Web Design" />

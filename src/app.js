@@ -5,6 +5,7 @@ import { useComputed } from "@preact/signals";
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import Kanban from "./components/Kanban";
+import Task from "./components/Task";
 import NewBoard from "./components/NewBoard";
 import NewTask from "./components/NewTask";
 
@@ -35,6 +36,7 @@ export default function App() {
                 />
                 <Kanban />
             </div>
+            <Task />
             <NewBoard
                 state={{
                     newBoard: state.newBoard,

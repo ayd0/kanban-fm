@@ -144,7 +144,7 @@ body {
 
 #board-header-list {
 	display: inline-block;
-	background-color: var(--component-color);
+	background-color: var(--components-color);
 	border-radius: 1ch;
 	color: var(--medium-grey);
 	padding-block: var(--board-spacing);
@@ -368,7 +368,7 @@ body {
 /* KANBAN END */
 /* NEW BOARD START */
 
-#new-board-container, #new-task-container {
+.modal-container {
 	position: absolute;
 	display: flex;
 	flex-flow: column;
@@ -380,7 +380,7 @@ body {
 	background-color: var(--dark-overlay);
 }
 
-#new-board-list, #new-task-list {
+.modal-list {
 	display: flex;
 	flex-flow: column;
 	background-color: var(--components-color);
@@ -389,29 +389,30 @@ body {
 	border-radius: 1ch;
 }
 
-#new-board-list h3, #new-task-list h3 {
+.modal-list h3 {
 	margin-block-end: 0;
 	color: var(--header-color);
 }
 
-#new-board-list h4, #new-task-list h4 {
+.modal-list h4 {
 	color: var(--subheader-color);
 	font-size: 10px;
 	margin-block-end: 1ch;
 	margin-block-start: 1.5rem;
 }
 
-#new-board-list div, #new-task-list div {
+.modal-list div {
 	display: flex;
 	align-items: center;
 }
 
-#new-board-list div + div, #new-task-list div + div {
+.modal-list div + div {
 	margin-block-start: 1ch;
 }
 
-#new-board-list input, #new-task-list input, #new-task-list textarea {
-	border: 2px solid var(--subcomponent-lines);
+.modal-list input, .modal-list textarea {
+	border: 1px solid var(--subcomponent-lines);
+	border-radius: .5ch;
 	background-color: var(--component-color);
 	color: var(--header-color);
 	padding-inline: 1rem;
@@ -419,21 +420,26 @@ body {
 	width: 100%;
 }
 
-#new-board-list input::placeholder, #new-task-list input::placeholder, #new-task-list textarea::placeholder {
+.modal-list input::placeholder, .modal-list textarea::placeholder {
 	color: var(--medium-grey);
+}
+
+.modal-list input:focus, .modal-list textarea:focus {
+	outline: none !important;
+	border-color: var(--main-purple);
 }
 
 .board-col-delete-btn, .task-col-delete-btn {
 	margin-inline-start: 1rem;
 }
 
-#new-board-list button, #new-task-list button {
+.modal-list button {
 	border-radius: 3ch;
 	padding-block: 1.5ch;
 	border: none;
 }
 
-#new-board-list button + button, #new-task-list button + button {
+.modal-list button + button {
 	margin-block-start: 1.5rem;
 }
 
@@ -470,11 +476,15 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border: 2px solid var(--subcomponent-lines);
+	border: 1px solid var(--subcomponent-lines);
 	color: var(--header-color);
 	border-radius: .5ch;
 	padding-block: .5rem;
 	padding-inline: 1rem;
+}
+
+.dropdown:hover {
+	border-color: var(--main-purple);
 }
 
 .dropdown * {
@@ -623,12 +633,12 @@ body {
 		margin-inline-end: 2ch;
 	}
 
-	#new-board-container, #new-task-container {
+	.modal-container {
 		display: flex;
 		align-items: center;
 	}
 
-	#new-board-list, #new-task-list {
+	.modal-list {
 		width: 25rem;
 	}
 }

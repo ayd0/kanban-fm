@@ -58,10 +58,10 @@ export default function NewTask({ state }) {
 
     return (
         <div
-            id="new-task-container"
+            className="modal-container"
             style={`display: ${showNewTask.value ? "flex" : "none"}`}
         >
-            <div id="new-task-list">
+            <div className="modal-list">
                 <h3>Add New Task</h3>
                 <h4>Title</h4>
                 <input type="text" placeholder="e.g. Take coffee break" />
