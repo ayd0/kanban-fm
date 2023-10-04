@@ -1,5 +1,10 @@
 import { useSignal } from "@preact/signals";
 
+// :::TODO:::
+// * Make showNewTask and createNewTask state changes reset fields
+// * Maintain field state between addition and deletion of fields
+// -- This must be tracked as local state
+
 export default function NewTask({ state }) {
     // global state
     const showNewTask = state.newTask.showNewTask;
@@ -23,7 +28,7 @@ export default function NewTask({ state }) {
     return (
         <div
             id="new-task-container"
-            style={`display: ${showNewTask.value ? "flex" : "flex"}`}
+            style={`display: ${showNewTask.value ? "flex" : "none"}`}
         >
             <div id="new-task-list">
                 <h3>Add New Task</h3>
@@ -35,13 +40,13 @@ export default function NewTask({ state }) {
                     placeholder="e.g. it's always good to take a break. This 15 minute break will recharge the batteries a little."
                 />
                 <h4>Subtasks</h4>
-                {subtaskList.value.map((subTask) => {
+                {subtaskList.value.map((subTask, idx) => {
                     return (
                         <div>
                             <input
                                 type="text"
                                 value={subTask.name}
-                                placeholder={"e.g. Make Coffee"}
+                                placeholder={`Subtask ${idx + 1}`}
                             />
                             <img
                                 className="task-col-delete-btn"
