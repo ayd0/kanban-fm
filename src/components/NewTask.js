@@ -8,7 +8,10 @@ export default function NewTask({ state }) {
     const showDropdown = useSignal(false);
 
     // pseudo-state
-    const subtaskList = useSignal([{ name: "" }, { name: "" }]);
+    const subtaskList = useSignal([
+        { name: "", id: 0 },
+        { name: "", id: 1 },
+    ]);
 
     const taskStatusList = [
         { name: "Todo", id: 0 },
@@ -32,31 +35,54 @@ export default function NewTask({ state }) {
                     placeholder="e.g. it's always good to take a break. This 15 minute break will recharge the batteries a little."
                 />
                 <h4>Subtasks</h4>
-                {subtaskList.value.map((subTask, idx) => {
+                {subtaskList.value.map((subTask) => {
                     return (
                         <div>
                             <input
                                 type="text"
                                 value={subTask.name}
-                                placeholder="e.g. Make Coffee"
+                                placeholder={"e.g. Make Coffee"}
                             />
                             <img
                                 className="task-col-delete-btn"
                                 src="./assets/icons/icon-cross.svg"
                                 onClick={() => {
                                     // not working
-                                    console.log(subtaskList.value.length);
-                                    subtaskList.value =
-                                        subtaskList.value.length === 1
-                                            ? []
-                                            : subtaskList.value.splice(idx, 1);
-                                    console.log(subtaskList.value.length);
+                                    if (subtaskList.value.length > 1) {
+                                        const newSubtaskList =
+                                            subtaskList.value;
+                                        newSubtaskList.splice(
+                                            newSubtaskList.findIndex(
+                                                (sub) => sub.id === subTask.id
+                                            ),
+                                            1
+                                        );
+                                        subtaskList.value = [...newSubtaskList];
+                                    } else {
+                                        subtaskList.value = [];
+                                    }
                                 }}
                             />
                         </div>
                     );
                 })}
-                <button id="add-subtask-btn">
+                <button
+                    id="add-subtask-btn"
+                    onClick={() => {
+                        subtaskList.value = [
+                            ...subtaskList.value,
+                            {
+                                name: "",
+                                id:
+                                    subtaskList.value.length > 0
+                                        ? subtaskList.value[
+                                              subtaskList.value.length - 1
+                                          ].id + 1
+                                        : 0,
+                            },
+                        ];
+                    }}
+                >
                     <img src="./assets/icons/icon-add-board-mobile.svg" />
                     Add New Subtask
                 </button>
