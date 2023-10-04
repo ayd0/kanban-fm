@@ -4,8 +4,14 @@ export default function Sidebar({ state }) {
     // global state
     const showNewBoard = state.showNewBoard;
     const showNewTask = state.showNewTask;
-    const { showBoardModal, showSidebar, selectedBoard, themeDark, boards, numBoards } =
-        state.sidebar;
+    const {
+        showBoardModal,
+        showSidebar,
+        selectedBoard,
+        themeDark,
+        boards,
+        numBoards,
+    } = state.sidebar;
 
     // local state
     const mapBoard = (board) => {
@@ -38,24 +44,48 @@ export default function Sidebar({ state }) {
         {
             name: "--components-color",
             light: "var(--white)",
-            dark: "var(--dark-grey)"
+            dark: "var(--dark-grey)",
         },
         {
             name: "--lines-color",
             light: "var(--lines-light)",
-            dark: "var(--lines-dark)"
+            dark: "var(--lines-dark)",
         },
         {
             name: "--header-color",
             light: "var(--black)",
+            dark: "var(--white)",
+        },
+        {
+            name: "--subheader-color",
+            light: "var(--medium-grey)",
+            dark: "var(--white)",
+        },
+        {
+            name: "--subcomponent-color",
+            light: "var(--white)",
+            dark: "var(--very-dark-grey)",
+        },
+        {
+            name: "--subcomponent-lines",
+            light: "var(--light-grey)",
+            dark: "#828FA3",
+        },
+        {
+            name: "--alt-btn-color",
+            light: "var(--main-purple-light)",
             dark: "var(--white)"
         }
     ];
 
-    themeVars.forEach(theme => {
-        document.querySelector(':root').style.setProperty(theme.name, themeDark.value ? theme.dark : theme.light);
-    })
-
+    themeVars.forEach((theme) => {
+        document
+            .querySelector(":root")
+            .style.setProperty(
+                theme.name,
+                themeDark.value ? theme.dark : theme.light
+            );
+    });
 
     return (
         <div>
@@ -70,7 +100,9 @@ export default function Sidebar({ state }) {
                     ></source>
                     <source
                         media="(min-width: 670px)"
-                        srcset={`./assets/icons/logo-${themeDark.value ? "light" : "dark"}.svg`}
+                        srcset={`./assets/icons/logo-${
+                            themeDark.value ? "light" : "dark"
+                        }.svg`}
                     ></source>
                     <img id="logo" src="./assets/icons/logo-mobile.svg" />
                 </picture>
@@ -130,7 +162,13 @@ export default function Sidebar({ state }) {
                             <img src="./assets/icons/icon-light-theme.svg" />
                             <div id="theme-toggler">
                                 <div id="theme-switch">
-                                    <input onChange={(e) => themeDark.value = e.target.checked} id="theme-type" type="checkbox" />
+                                    <input
+                                        onChange={(e) =>
+                                            (themeDark.value = e.target.checked)
+                                        }
+                                        id="theme-type"
+                                        type="checkbox"
+                                    />
                                     <label for="theme-type"></label>
                                 </div>
                             </div>

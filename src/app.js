@@ -27,6 +27,7 @@ export default function App() {
                 <Topbar
                     state={{
                         showSidebar: state.sidebar.showSidebar,
+                        themeDark: state.sidebar.themeDark,
                         showNewTask: state.newTask.showNewTask,
                         selectedBoard: state.sidebar.selectedBoard,
                         boards: state.sidebar.boards,

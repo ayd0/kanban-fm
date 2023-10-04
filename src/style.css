@@ -29,6 +29,10 @@
 	--lines-color: var(--lines-light);
 	/* alt: white */
 	--header-color: var(--white);
+	/* alt: --very-dark-grey */
+	--subcomponent-color: var(--white);
+	/* alt: --main-purple-light */
+	--alt-btn-color: var(--white)
 }
 
 @font-face {
@@ -379,7 +383,7 @@ body {
 #new-board-list, #new-task-list {
 	display: flex;
 	flex-flow: column;
-	background-color: var(--white);
+	background-color: var(--components-color);
 	padding: var(--board-spacing);
 	margin-inline: var(--board-spacing);
 	border-radius: 1ch;
@@ -387,10 +391,11 @@ body {
 
 #new-board-list h3, #new-task-list h3 {
 	margin-block-end: 0;
+	color: var(--header-color);
 }
 
 #new-board-list h4, #new-task-list h4 {
-	color: var(--medium-grey);
+	color: var(--subheader-color);
 	font-size: 10px;
 	margin-block-end: 1ch;
 	margin-block-start: 1.5rem;
@@ -406,8 +411,9 @@ body {
 }
 
 #new-board-list input, #new-task-list input, #new-task-list textarea {
-	border: 2px solid var(--light-grey);
-	color: var(--black);
+	border: 2px solid var(--subcomponent-lines);
+	background-color: var(--component-color);
+	color: var(--header-color);
 	padding-inline: 1rem;
 	padding-block: 1ch;
 	width: 100%;
@@ -432,7 +438,7 @@ body {
 }
 
 #add-column-btn, #add-subtask-btn {
-	background-color: var(--main-purple-light);
+	background-color: var(--alt-btn-color);
 	color: var(--main-purple);
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
@@ -464,7 +470,8 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	border: 2px solid var(--light-grey);
+	border: 2px solid var(--subcomponent-lines);
+	color: var(--header-color);
 	border-radius: .5ch;
 	padding-block: .5rem;
 	padding-inline: 1rem;
@@ -481,7 +488,7 @@ body {
 	align-items: flex-start !important;
 	top: 100%;
 	left: 0;
-	background-color: var(--white);
+	background-color: var(--subcomponent-color);
 	width: 100%;
 	border: 1px solid var(--medium-grey);
 	padding-block: 1rem;
@@ -492,12 +499,13 @@ body {
 .dropdown-content p {
 	width: 100%;
 	padding-inline: 1rem;
-	color: var(--medium-grey)
+	color: var(--medium-grey);
+	background-color: var(--subcomponent-color);
 }
 
 .dropdown-content p:hover {
 	background-color: var(--main-purple-light);
-	color: var(--black);
+	color: var(--header-color);
 }
 
 .dropdown-content p + p {

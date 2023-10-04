@@ -4,7 +4,8 @@ const createSidebarState = () => {
     const showBoardModal = signal(false);
     const showSidebar = signal(true);
     const selectedBoard = signal(0);
-    const themeDark = signal(false);
+    // switch to false for build
+    const themeDark = signal(true);
 
     const boards = signal([
         { name: "Platform Launch", selected: signal(true), id: 0 },
