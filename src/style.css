@@ -16,6 +16,19 @@
 
 	--board-spacing: 1rem;
 	--board-name-spacing: 1.5rem;
+
+	/* Theme Namespace */
+
+	/* alt: very-dark-grey */
+	--body-color: var(--light-grey);
+	/* alt: dark-grey */
+	--components-color: var(--white);
+	/* alt: white */
+	--component-headers-color: var(--black);
+	/* alt: lines-dark */
+	--lines-color: var(--lines-light);
+	/* alt: white */
+	--header-color: var(--white);
 }
 
 @font-face {
@@ -70,7 +83,7 @@ h4 {
 
 body {
 	height: 100vh;
-	background-color: var(--light-grey);
+	background-color: var(--body-color);
 	margin: 0;
 }
 
@@ -86,7 +99,7 @@ body {
 	display: flex;
 	position: relative;
 	align-items: center;
-	background-color: var(--white);
+	background-color: var(--components-color);
 	padding: var(--board-spacing);
 }
 
@@ -95,7 +108,7 @@ body {
 }
 
 #board-header {
-	color: var(--black);
+	color: var(--header-color);
 }
 
 #board-chevron {
@@ -127,7 +140,7 @@ body {
 
 #board-header-list {
 	display: inline-block;
-	background-color: var(--white);
+	background-color: var(--component-color);
 	border-radius: 1ch;
 	color: var(--medium-grey);
 	padding-block: var(--board-spacing);
@@ -170,7 +183,7 @@ body {
 }
 
 #create-board-btn {
-	background-color: var(--white) !important;
+	background-color: var(--component-color) !important;
 	color: var(--main-purple) !important;
 }
 
@@ -182,7 +195,7 @@ body {
 #theme-container {
 	display: flex;
 	justify-content: center;
-	background-color: var(--light-grey);
+	background-color: var(--body-color);
 	margin-block-start: var(--board-spacing);
 	margin-inline: var(--board-spacing);
 	padding-block: 1ch;
@@ -255,14 +268,14 @@ body {
 #topbar-container {
 	display: none;
 	width: 100%;
-	background-color: var(--white); 
-	border-block-end: .3ch solid var(--lines-light);
+	background-color: var(--components-color); 
+	border-block-end: .3ch solid var(--lines-color);
 }
 
 #logo-divider {
 	height: 100%;
 	align-items: center;
-	border-inline-end: .3ch solid var(--lines-light);
+	border-inline-end: .3ch solid var(--lines-color);
 	padding-inline: 1.5rem;
 }
 
@@ -303,7 +316,7 @@ body {
 }
 
 .kanban-row {
-	background-color: var(--white);
+	background-color: var(--components-color);
 	width: 18rem;
 	padding-inline: 1rem;
 	padding-block: .5rem;
@@ -313,7 +326,7 @@ body {
 }
 
 .kanban-row h3 {
-	color: var(--black);
+	color: var(--header-color);
 }
 
 .kanban-row p {
@@ -505,7 +518,7 @@ body {
 		width: fit-content;
 		height: 100%;
 		padding: 0;
-		border-inline-end: .3ch solid var(--lines-light);
+		border-inline-end: .3ch solid var(--lines-color);
 	}
 
 	#logo {
@@ -578,6 +591,7 @@ body {
 
 	#topbar-container h1 {
 		margin-inline-start: 1.5rem;
+		color: var(--header-color);
 	}
 
 	#topbar-container button {

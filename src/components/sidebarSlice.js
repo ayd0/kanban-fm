@@ -4,6 +4,7 @@ const createSidebarState = () => {
     const showBoardModal = signal(false);
     const showSidebar = signal(true);
     const selectedBoard = signal(0);
+    const themeDark = signal(false);
 
     const boards = signal([
         { name: "Platform Launch", selected: signal(true), id: 0 },
@@ -27,6 +28,7 @@ const createSidebarState = () => {
         showBoardModal,
         showSidebar,
         selectedBoard,
+        themeDark,
         boards,
         numBoards,
         createBoard,

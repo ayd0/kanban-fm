@@ -4,9 +4,10 @@ export default function Sidebar({ state }) {
     // global state
     const showNewBoard = state.showNewBoard;
     const showNewTask = state.showNewTask;
-    const { showBoardModal, showSidebar, selectedBoard, boards, numBoards } =
+    const { showBoardModal, showSidebar, selectedBoard, themeDark, boards, numBoards } =
         state.sidebar;
 
+    // local state
     const mapBoard = (board) => {
         let imageStyle = "";
         return (
@@ -27,6 +28,35 @@ export default function Sidebar({ state }) {
         );
     };
 
+    // pseudo-state
+    const themeVars = [
+        {
+            name: "--body-color",
+            light: "var(--light-grey)",
+            dark: "var(--very-dark-grey)",
+        },
+        {
+            name: "--components-color",
+            light: "var(--white)",
+            dark: "var(--dark-grey)"
+        },
+        {
+            name: "--lines-color",
+            light: "var(--lines-light)",
+            dark: "var(--lines-dark)"
+        },
+        {
+            name: "--header-color",
+            light: "var(--black)",
+            dark: "var(--white)"
+        }
+    ];
+
+    themeVars.forEach(theme => {
+        document.querySelector(':root').style.setProperty(theme.name, themeDark.value ? theme.dark : theme.light);
+    })
+
+
     return (
         <div>
             <div
@@ -40,7 +70,7 @@ export default function Sidebar({ state }) {
                     ></source>
                     <source
                         media="(min-width: 670px)"
-                        srcset="./assets/icons/logo-dark.svg"
+                        srcset={`./assets/icons/logo-${themeDark.value ? "light" : "dark"}.svg`}
                     ></source>
                     <img id="logo" src="./assets/icons/logo-mobile.svg" />
                 </picture>
@@ -100,7 +130,7 @@ export default function Sidebar({ state }) {
                             <img src="./assets/icons/icon-light-theme.svg" />
                             <div id="theme-toggler">
                                 <div id="theme-switch">
-                                    <input id="theme-type" type="checkbox" />
+                                    <input onChange={(e) => themeDark.value = e.target.checked} id="theme-type" type="checkbox" />
                                     <label for="theme-type"></label>
                                 </div>
                             </div>
