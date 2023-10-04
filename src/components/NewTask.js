@@ -7,10 +7,54 @@ import { useSignal } from "@preact/signals";
 
 export default function NewTask({ state }) {
     // global state
-    const { showNewTask, subtaskList, taskStatusList, selectedTaskName } = state.newTask;
+    const { showNewTask, subtaskList, taskStatusList, selectedTaskName } =
+        state.newTask;
 
     // local state
     const showDropdown = useSignal(false);
+
+    const mapSubtask = (subTask, idx) => {
+        return (
+            <div>
+                <input
+                    type="text"
+                    value={subTask.name}
+                    placeholder={`Subtask ${idx + 1}`}
+                />
+                <img
+                    className="task-col-delete-btn"
+                    src="./assets/icons/icon-cross.svg"
+                    onClick={() => {
+                        // not working
+                        if (subtaskList.value.length > 1) {
+                            const newSubtaskList = subtaskList.value;
+                            newSubtaskList.splice(
+                                newSubtaskList.findIndex(
+                                    (sub) => sub.id === subTask.id
+                                ),
+                                1
+                            );
+                            subtaskList.value = [...newSubtaskList];
+                        } else {
+                            subtaskList.value = [];
+                        }
+                    }}
+                />
+            </div>
+        );
+    };
+
+    const mapTaskStatus = (taskStatus) => {
+        return (
+            <p
+                onClick={() => {
+                    selectedTaskName.value = taskStatus.name;
+                }}
+            >
+                {taskStatus.name}
+            </p>
+        );
+    };
 
     return (
         <div
@@ -28,35 +72,7 @@ export default function NewTask({ state }) {
                 />
                 <h4>Subtasks</h4>
                 {subtaskList.value.map((subTask, idx) => {
-                    return (
-                        <div>
-                            <input
-                                type="text"
-                                value={subTask.name}
-                                placeholder={`Subtask ${idx + 1}`}
-                            />
-                            <img
-                                className="task-col-delete-btn"
-                                src="./assets/icons/icon-cross.svg"
-                                onClick={() => {
-                                    // not working
-                                    if (subtaskList.value.length > 1) {
-                                        const newSubtaskList =
-                                            subtaskList.value;
-                                        newSubtaskList.splice(
-                                            newSubtaskList.findIndex(
-                                                (sub) => sub.id === subTask.id
-                                            ),
-                                            1
-                                        );
-                                        subtaskList.value = [...newSubtaskList];
-                                    } else {
-                                        subtaskList.value = [];
-                                    }
-                                }}
-                            />
-                        </div>
-                    );
+                    return mapSubtask(subTask, idx);
                 })}
                 <button
                     id="add-subtask-btn"
@@ -96,16 +112,7 @@ export default function NewTask({ state }) {
                         }`}
                     >
                         {taskStatusList.map((taskStatus) => {
-                            return (
-                                <p
-                                    onClick={() => {
-                                        selectedTaskName.value =
-                                            taskStatus.name;
-                                    }}
-                                >
-                                    {taskStatus.name}
-                                </p>
-                            );
+                            return mapTaskStatus(taskStatus);
                         })}
                     </div>
                 </div>
