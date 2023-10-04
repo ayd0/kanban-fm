@@ -2,6 +2,7 @@ export default function Topbar({ state }) {
     const selectedBoardName =
         state.boards.value[state.selectedBoard.value].name;
     const showSidebar = state.showSidebar;
+    const showNewTask = state.showNewTask;
 
     return (
         <div id="topbar-container">
@@ -9,7 +10,7 @@ export default function Topbar({ state }) {
                 <img src="./assets/icons/logo-dark.svg" />
             </div>
             <h1>{selectedBoardName}</h1>
-            <button>
+            <button onClick={() => showNewTask.value = true}>
                 <img src="./assets/icons/icon-add-task-mobile.svg" />
                 Add New Task
             </button>

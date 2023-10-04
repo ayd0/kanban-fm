@@ -3,55 +3,29 @@ import { useSignal } from "@preact/signals";
 export default function Sidebar({ state }) {
     // global state
     const showNewBoard = state.showNewBoard;
+    const showNewTask = state.showNewTask;
     const { showBoardModal, showSidebar, selectedBoard, boards, numBoards } =
         state.sidebar;
-    const hideSidebar = state.hideSidebar;
-
-    const mapBoards = () => {
-        return boards.value.map((board) => {
-            let imageStyle = "";
-            return (
-                <div
-                    className={`board-name ${
-                        board.selected.value ? "board-name-selected" : ""
-                    }`}
-                    onClick={() => {
-                        boards.value[
-                            selectedBoard.value
-                        ].selected.value = false;
-                        selectedBoard.value = board.id;
-                        board.selected.value = true;
-                        imageStyle = imageStyle === "" ? "-selected" : "";
-                    }}
-                >
-                    <img src={`./assets/icons/icon-board.svg${imageStyle}`} />
-                    <h3>{board.name}</h3>
-                </div>
-            );
-        });
-    };
 
     const mapBoard = (board) => {
-            let imageStyle = "";
-            return (
-                <div
-                    className={`board-name ${
-                        board.selected.value ? "board-name-selected" : ""
-                    }`}
-                    onClick={() => {
-                        boards.value[
-                            selectedBoard.value
-                        ].selected.value = false;
-                        selectedBoard.value = board.id;
-                        board.selected.value = true;
-                        imageStyle = imageStyle === "" ? "-selected" : "";
-                    }}
-                >
-                    <img src={`./assets/icons/icon-board.svg${imageStyle}`} />
-                    <h3>{board.name}</h3>
-                </div>
-            );
-    }
+        let imageStyle = "";
+        return (
+            <div
+                className={`board-name ${
+                    board.selected.value ? "board-name-selected" : ""
+                }`}
+                onClick={() => {
+                    boards.value[selectedBoard.value].selected.value = false;
+                    selectedBoard.value = board.id;
+                    board.selected.value = true;
+                    imageStyle = imageStyle === "" ? "-selected" : "";
+                }}
+            >
+                <img src={`./assets/icons/icon-board.svg${imageStyle}`} />
+                <h3>{board.name}</h3>
+            </div>
+        );
+    };
 
     return (
         <div>
@@ -87,6 +61,7 @@ export default function Sidebar({ state }) {
                 <img
                     id="add-task-btn"
                     src="./assets/icons/icon-add-task-mobile.svg"
+                    onClick={() => (showNewTask.value = true)}
                 />
                 <img
                     id="board-settings"

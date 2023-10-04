@@ -12,11 +12,14 @@ export default function App() {
     // global state
     const state = createStore();
 
+    console.log(state);
+
     return (
         <div id="main">
             <Sidebar
                 state={{
                     showNewBoard: state.newBoard.showNewBoard,
+                    showNewTask: state.newTask.showNewTask,
                     sidebar: state.sidebar,
                 }}
             />
@@ -24,17 +27,24 @@ export default function App() {
                 <Topbar
                     state={{
                         showSidebar: state.sidebar.showSidebar,
+                        showNewTask: state.newTask.showNewTask,
                         selectedBoard: state.sidebar.selectedBoard,
                         boards: state.sidebar.boards,
                     }}
                 />
                 <Kanban />
             </div>
-            <NewBoard state={{
-                newBoard: state.newBoard,
-                createBoard: state.sidebar.createBoard
-                }} />
-            <NewTask />
+            <NewBoard
+                state={{
+                    newBoard: state.newBoard,
+                    createBoard: state.sidebar.createBoard,
+                }}
+            />
+            <NewTask
+                state={{
+                    newTask: state.newTask,
+                }}
+            />
         </div>
     );
 }
