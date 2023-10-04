@@ -4,8 +4,9 @@ import { useComputed } from "@preact/signals";
 // @ts-ignore
 import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
-import NewBoard from "./components/NewBoard";
 import Kanban from "./components/Kanban";
+import NewBoard from "./components/NewBoard";
+import NewTask from "./components/NewTask";
 
 export default function App() {
     // global state
@@ -33,6 +34,7 @@ export default function App() {
                 newBoard: state.newBoard,
                 createBoard: state.sidebar.createBoard
                 }} />
+            <NewTask />
         </div>
     );
 }

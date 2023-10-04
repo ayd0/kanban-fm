@@ -279,19 +279,62 @@ body {
 
 #kanban-container {
 	display: flex;
-	flex-flow: column;
-	justify-content: center;
-	align-items: center;
+	flex-flow: row;
 	height: 100%;
+	overflow: auto;
 }
 
-#kanban-container h2 {
+.kanban-col {
+	margin-inline-start: 1rem;
+}
+
+.kanban-col h4 {
+	display: flex;
+	align-items: center;
+	color: var(--medium-grey);
+}
+
+.kanban-col h4 div {
+	width: 1.3ch;
+	height: 1.3ch;
+	border-radius: 50%;
+	background-color: #49C4E5;
+	margin-inline-end: 1ch;
+}
+
+.kanban-row {
+	background-color: var(--white);
+	width: 18rem;
+	padding-inline: 1rem;
+	padding-block: .5rem;
+	margin-block-end: 1rem;
+	border-radius: 1.5ch;
+	box-shadow: 0px 3px 2px rgba(0, 0, 0, .1);
+}
+
+.kanban-row h3 {
+	color: var(--black);
+}
+
+.kanban-row p {
+	color: var(--medium-grey);
+}
+
+#add-new-col-btn {
+	display: none;
+	flex-flow: column;
+	align-items: center;
+	align-self: center;
+	margin-inline: auto;
+}
+
+#add-new-col-btn h2 {
 	max-width: 20rem;
 	text-align: center;
 	color: var(--medium-grey);
 }
 
-#kanban-container button {
+#add-new-col-btn button {
 	border: none;
 	background-color: var(--main-purple);
 	color: var(--white);
@@ -300,7 +343,7 @@ body {
 	border-radius: 3ch;
 }
 
-#kanban-container button img {
+#add-new-col-btn button img {
 	width: 1ch;
 	margin-inline-end: .5ch;
 }
@@ -308,7 +351,7 @@ body {
 /* KANBAN END */
 /* NEW BOARD START */
 
-#new-board-container {
+#new-board-container, #new-task-container {
 	position: absolute;
 	display: flex;
 	flex-flow: column;
@@ -320,7 +363,7 @@ body {
 	background-color: var(--dark-overlay);
 }
 
-#new-board-list {
+#new-board-list, #new-task-list {
 	display: flex;
 	flex-flow: column;
 	background-color: var(--white);
@@ -329,22 +372,27 @@ body {
 	border-radius: 1ch;
 }
 
-#new-board-list h4 {
+#new-board-list h3, #new-task-list h3 {
+	margin-block-end: 0;
+}
+
+#new-board-list h4, #new-task-list h4 {
 	color: var(--medium-grey);
 	font-size: 10px;
 	margin-block-end: 1ch;
+	margin-block-start: 1.5rem;
 }
 
-#new-board-list div {
+#new-board-list div, #new-task-list div {
 	display: flex;
 	align-items: center;
 }
 
-#new-board-list div + div {
+#new-board-list div + div, #new-task-list div + div {
 	margin-block: 1ch;
 }
 
-#new-board-list input {
+#new-board-list input, #new-task-list input, #new-task-list textarea {
 	border: 2px solid var(--light-grey);
 	color: var(--black);
 	padding-inline: 1rem;
@@ -352,44 +400,55 @@ body {
 	width: 100%;
 }
 
-#new-board-list input::placeholder {
+#new-board-list input::placeholder, #new-task-list input::placeholder, #new-task-list textarea::placeholder {
 	color: var(--medium-grey);
 }
 
-.board-col-delete-btn {
+.board-col-delete-btn, .task-col-delete-btn {
 	margin-inline-start: 1rem;
 }
 
-#new-board-list button {
+#new-board-list button, #new-task-list button {
 	border-radius: 3ch;
 	padding-block: 1.5ch;
 	border: none;
 }
 
-#new-board-list button + button {
+#new-board-list button + button, #new-task-list button + button {
 	margin-block-start: 1.5rem;
 }
 
-#add-column-btn {
+#add-column-btn, #add-subtask-btn {
 	background-color: var(--main-purple-light);
 	color: var(--main-purple);
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
 }
 
-#add-column-btn img {
+#add-column-btn img, #add-subtask-btn img {
 	width: .9ch;
 	margin-inline-end: .3ch;
 }
 
-#add-board-btn {
+#add-subtask-btn + h4 {
+	margin-block-start: 1.5rem;
+}
+
+#add-board-btn, #new-task-btn {
 	background-color: var(--main-purple);
 	color: var(--white);
 	font-family: 'PlusJakartaSans-Bold';
 	font-size: 12px;
 }
 
+#new-task-btn {
+	margin-block-start: 1.5rem;
+}
+
 /* NEW BOARD END */
+/* NEW TASK START */
+
+/* NEW TASK END */
 
 @media only screen and (min-width: 670px) {
 	#main {
@@ -499,12 +558,12 @@ body {
 		margin-inline-end: 2ch;
 	}
 
-	#new-board-container {
+	#new-board-container, #new-task-container {
 		display: flex;
 		align-items: center;
 	}
 
-	#new-board-list {
+	#new-board-list, #new-task-list {
 		width: 25rem;
 	}
 }
