@@ -1,4 +1,5 @@
 import { useSignal } from "@preact/signals";
+import { checkClientBounds } from "./utils";
 
 // :::TODO:::
 // * Make showNewTask and createNewTask state changes reset fields
@@ -60,6 +61,7 @@ export default function NewTask({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewTask.value ? "flex" : "none"}`}
+            onClick={(e) => checkClientBounds(e, showNewTask)}
         >
             <div className="modal-list">
                 <h3>Add New Task</h3>

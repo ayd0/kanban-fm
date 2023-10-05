@@ -1,10 +1,11 @@
 import { useSignal } from "@preact/signals";
+import { checkClientBounds } from "./utils";
 
 export default function Task({ state }) {
     // global state
     const { showTask, taskStatusList, selectedTaskName } = state.task;
 
-    // local state 
+    // local state
     const showDropdown = useSignal(false);
 
     const mapTaskStatus = (taskStatus) => {
@@ -20,7 +21,11 @@ export default function Task({ state }) {
     };
 
     return (
-        <div className="modal-container" style={`display: ${showTask.value ? "flex" : "none"}`}>
+        <div
+            className="modal-container"
+            style={`display: ${showTask.value ? "flex" : "none"}`}
+            onClick={(e) => checkClientBounds(e, showTask)}
+        >
             <div className="modal-list">
                 <div id="task-header">
                     <h3>Build UI for onboarding flow</h3>
@@ -44,7 +49,8 @@ export default function Task({ state }) {
                         <input id="subtask-1" type="checkbox" />
                         <label for="subtask-1">
                             <h4>
-                                Outline a business model that works for our solution
+                                Outline a business model that works for our
+                                solution
                             </h4>
                         </label>
                     </div>
@@ -52,7 +58,8 @@ export default function Task({ state }) {
                         <input id="subtask-2" type="checkbox" />
                         <label for="subtask-2">
                             <h4>
-                                Talk to potential customers about our proposal solution and ask for fair price expectency
+                                Talk to potential customers about our proposal
+                                solution and ask for fair price expectency
                             </h4>
                         </label>
                     </div>

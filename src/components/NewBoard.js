@@ -1,3 +1,5 @@
+import { checkClientBounds } from "./utils";
+
 export default function NewBoard({ state }) {
     // global state
     const { showNewBoard, newBoardName } = state.newBoard;
@@ -10,6 +12,7 @@ export default function NewBoard({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewBoard.value ? "flex" : "none"}`}
+            onClick={(e) => checkClientBounds(e, showNewBoard)}
         >
             <div className="modal-list">
                 <h3>Add New Board</h3>

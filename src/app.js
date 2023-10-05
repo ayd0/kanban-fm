@@ -34,6 +34,7 @@ export default function App() {
                 />
                 <Kanban />
             </div>
+            {/* MODAL CONTAINERS */}
             <Task
                 state={{
                     task: state.task,
