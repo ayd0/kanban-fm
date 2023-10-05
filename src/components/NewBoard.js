@@ -2,22 +2,19 @@ import { checkClientBounds } from "./utils";
 
 export default function NewBoard({ state }) {
     // global state
-    const { showNewBoard, newBoardName } = state.newBoard;
+    const { showNewBoard, newBoardName, resetBoardCols } = state.newBoard;
     const createBoard = state.createBoard;
-
-    // local state
-    let boardName = '';
 
     return (
         <div
             className="modal-container"
             style={`display: ${showNewBoard.value ? "flex" : "none"}`}
-            onClick={(e) => checkClientBounds(e, showNewBoard)}
+            onClick={(e) => checkClientBounds(e, showNewBoard, resetBoardCols)}
         >
             <div className="modal-list">
                 <h3>Add New Board</h3>
                 <h4>Board Name</h4>
-                <input onChange={(e) => boardName = e.target.value} type="text" placeholder="e.g. Web Design" />
+                <input onChange={(e) => newBoardName.value = e.target.value} value={newBoardName.value} type="text" placeholder="e.g. Web Design" />
                 <h4>Board Columns</h4>
                 <div>
                     <input type="text" value="Todo" />
@@ -38,8 +35,10 @@ export default function NewBoard({ state }) {
                     Add New Column
                 </button>
                 <button id="add-board-btn" onClick={() => {
-                    createBoard(boardName);
-                    showNewBoard.value = false}
+                    createBoard(newBoardName.value);
+                    resetBoardCols();
+                    showNewBoard.value = false
+                }
                     }>Create New Board</button>
             </div>
         </div>

@@ -1,5 +1,4 @@
 import createStore from "./store";
-import { useComputed } from "@preact/signals";
 
 // @ts-ignore
 import Sidebar from "./components/Sidebar";
@@ -17,9 +16,10 @@ export default function App() {
         <div id="main">
             <Sidebar
                 state={{
+                    sidebar: state.sidebar,
+                    kanban: state.kanban,
                     showNewBoard: state.newBoard.showNewBoard,
                     showNewTask: state.newTask.showNewTask,
-                    sidebar: state.sidebar,
                 }}
             />
             <div id="content-container">

@@ -1,9 +1,8 @@
 import { useSignal } from "@preact/signals";
+import { themeVars } from "./utils";
 
 export default function Sidebar({ state }) {
     // global state
-    const showNewBoard = state.showNewBoard;
-    const showNewTask = state.showNewTask;
     const {
         showBoardModal,
         showSidebar,
@@ -12,6 +11,10 @@ export default function Sidebar({ state }) {
         boards,
         numBoards,
     } = state.sidebar;
+    // implement to replace boards, selectedBoard, numBoards state
+    const { kanbanLists, selectedKanban } = state.kanban;
+    const showNewBoard = state.showNewBoard;
+    const showNewTask = state.showNewTask;
 
     // local state
     const mapBoard = (board) => {
@@ -34,49 +37,6 @@ export default function Sidebar({ state }) {
         );
     };
 
-    // pseudo-state
-    const themeVars = [
-        {
-            name: "--body-color",
-            light: "var(--light-grey)",
-            dark: "var(--very-dark-grey)",
-        },
-        {
-            name: "--components-color",
-            light: "var(--white)",
-            dark: "var(--dark-grey)",
-        },
-        {
-            name: "--lines-color",
-            light: "var(--lines-light)",
-            dark: "var(--lines-dark)",
-        },
-        {
-            name: "--header-color",
-            light: "var(--black)",
-            dark: "var(--white)",
-        },
-        {
-            name: "--subheader-color",
-            light: "var(--medium-grey)",
-            dark: "var(--white)",
-        },
-        {
-            name: "--subcomponent-color",
-            light: "var(--white)",
-            dark: "var(--very-dark-grey)",
-        },
-        {
-            name: "--subcomponent-lines",
-            light: "var(--light-grey)",
-            dark: "#828FA3",
-        },
-        {
-            name: "--alt-btn-color",
-            light: "var(--main-purple-light)",
-            dark: "var(--white)"
-        }
-    ];
 
     themeVars.forEach((theme) => {
         document

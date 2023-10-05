@@ -4,8 +4,6 @@ export default function Kanban({ state }) {
 
     // local state
     const mapCol = (col) => {
-        console.log(col.value)
-
         return (
             <div class="kanban-col">
                 <h4>
@@ -16,7 +14,7 @@ export default function Kanban({ state }) {
                     return (
                         <div class="kanban-row">
                             <h3>{task.name}</h3>
-                            <p>0 of {task.subtasks.length} subtasks</p>
+                            <p>{task.subtasks.length > 0 ? `0 of ${task.subtasks.length} subtasks` : "No subtasks"}</p>
                         </div>
                     );
                 })}

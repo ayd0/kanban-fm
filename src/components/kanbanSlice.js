@@ -23,13 +23,11 @@ const createKanbanState = () => {
                 }),
                 signal({
                     name: "DOING",
-                    color: "#8471F2",
+                    color: "#8471F2 !important",
                     tasks: [
                         {
-                            name: "Build UI for onboarding flow",
+                            name: "Design settings and search pages",
                             subtasks: [
-                                "Research competitor pricing and business models",
-                                "Outline a business model that works for our solution",
                                 "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                             ],
                         },
@@ -40,11 +38,8 @@ const createKanbanState = () => {
                     color: "#67E2AE",
                     tasks: [
                         {
-                            name: "Build UI for onboarding flow",
+                            name: "Conduct 5 wireframe tests",
                             subtasks: [
-                                "Research competitor pricing and business models",
-                                "Outline a business model that works for our solution",
-                                "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                             ],
                         },
                     ],
@@ -54,8 +49,9 @@ const createKanbanState = () => {
     ]);
 
     const selectedKanban = signal(0);
+    const numBoards = signal(kanbanLists.value.length);
 
-    return { kanbanLists, selectedKanban };
+    return { kanbanLists, selectedKanban, numBoards };
 };
 
 export default createKanbanState;
