@@ -1,14 +1,15 @@
 import { signal } from "@preact/signals";
 
 const createKanbanState = () => {
-
     // TK: Pseudo-state prior to conversion to server-based, serves as example
-    const kanbanLists = [
+    const kanbanLists = signal([
         {
-            name: "Platform Launch",
-            cols: [
-                {
+            name: signal("Platform Launch"),
+            id: 0,
+            cols: signal([
+                signal({
                     name: "TODO",
+                    color: "#49C4E5",
                     tasks: [
                         {
                             name: "Build UI for onboarding flow",
@@ -19,9 +20,10 @@ const createKanbanState = () => {
                             ],
                         },
                     ],
-                },
-                {
+                }),
+                signal({
                     name: "DOING",
+                    color: "#8471F2",
                     tasks: [
                         {
                             name: "Build UI for onboarding flow",
@@ -32,9 +34,10 @@ const createKanbanState = () => {
                             ],
                         },
                     ],
-                },
-                {
+                }),
+                signal({
                     name: "DONE",
+                    color: "#67E2AE",
                     tasks: [
                         {
                             name: "Build UI for onboarding flow",
@@ -45,10 +48,14 @@ const createKanbanState = () => {
                             ],
                         },
                     ],
-                },
-            ],
+                }),
+            ]),
         },
-    ];
+    ]);
+
+    const selectedKanban = signal(0);
+
+    return { kanbanLists, selectedKanban };
 };
 
 export default createKanbanState;

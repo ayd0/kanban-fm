@@ -32,7 +32,11 @@ export default function App() {
                         boards: state.sidebar.boards,
                     }}
                 />
-                <Kanban />
+                <Kanban
+                    state={{
+                        kanban: state.kanban,
+                    }}
+                />
             </div>
             {/* MODAL CONTAINERS */}
             <Task
