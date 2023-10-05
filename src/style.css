@@ -384,9 +384,10 @@ body {
 	display: flex;
 	flex-flow: column;
 	background-color: var(--components-color);
-	padding: var(--board-spacing);
+	padding-inline: 2rem;
+	padding-block: var(--board-spacing);
 	margin-inline: var(--board-spacing);
-	border-radius: 1ch;
+	border-radius: .7ch;
 }
 
 .modal-list h3 {
@@ -399,6 +400,10 @@ body {
 	font-size: 10px;
 	margin-block-end: 1ch;
 	margin-block-start: 1.5rem;
+}
+
+.modal-list p {
+	color: var(--medium-grey);
 }
 
 .modal-list div {
@@ -523,6 +528,53 @@ body {
 }
 
 /* NEW BOARD END */
+/* TASK BEGIN */
+
+#task-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-block-end: 1rem;
+}
+
+#task-header h3 {
+	max-width: 85%;
+}
+
+#task-header img {
+	margin-block-start: 1rem;
+}
+
+#subtask-container {
+	display: flex;
+	flex-flow: column;
+	align-items: flex-start;
+}
+
+#subtask-header {
+	margin-block-start: .5rem;
+}
+
+.subtask-item {
+	background-color: var(--body-color);
+	width: 100%;
+	padding-block: .5rem;
+	padding-inline: 1rem;
+	border-radius: .5ch;
+}
+
+.subtask-item h4 {
+	margin: 0 !important;
+}
+
+.subtask-item input {
+	width: fit-content;
+	margin: 0;
+	margin-inline-end: 1rem;
+	accent-color: var(--main-purple);
+}
+
+/* TASK END */
 
 @media only screen and (min-width: 670px) {
 	#main {

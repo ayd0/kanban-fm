@@ -13,8 +13,6 @@ export default function App() {
     // global state
     const state = createStore();
 
-    console.log(state);
-
     return (
         <div id="main">
             <Sidebar
@@ -36,7 +34,11 @@ export default function App() {
                 />
                 <Kanban />
             </div>
-            <Task />
+            <Task
+                state={{
+                    task: state.task,
+                }}
+            />
             <NewBoard
                 state={{
                     newBoard: state.newBoard,
