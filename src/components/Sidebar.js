@@ -3,40 +3,34 @@ import { themeVars } from "./utils";
 
 export default function Sidebar({ state }) {
     // global state
-    const {
-        showBoardModal,
-        showSidebar,
-        selectedBoard,
-        themeDark,
-        boards,
-        numBoards,
-    } = state.sidebar;
+    const { showBoardModal, showSidebar, selectedBoard, themeDark, boards } =
+        state.sidebar;
     // implement to replace boards, selectedBoard, numBoards state
-    const { kanbanLists, selectedKanban } = state.kanban;
+    const { kanbanLists, selectedKanban, numBoards } = state.kanban;
     const showNewBoard = state.showNewBoard;
     const showNewTask = state.showNewTask;
 
     // local state
+
     const mapBoard = (board) => {
-        let imageStyle = "";
+        console.log(board.name.value);
+        let imageStyle = selectedKanban.value === board.id ? "-selected" : "";
         return (
             <div
                 className={`board-name ${
-                    board.selected.value ? "board-name-selected" : ""
+                    selectedKanban.value === board.id
+                        ? "board-name-selected"
+                        : ""
                 }`}
                 onClick={() => {
-                    boards.value[selectedBoard.value].selected.value = false;
-                    selectedBoard.value = board.id;
-                    board.selected.value = true;
-                    imageStyle = imageStyle === "" ? "-selected" : "";
+                    selectedKanban.value = board.id;
                 }}
             >
-                <img src={`./assets/icons/icon-board.svg${imageStyle}`} />
-                <h3>{board.name}</h3>
+                <img src={`./assets/icons/icon-board${imageStyle}.svg`} />
+                <h3>{board.name.value}</h3>
             </div>
         );
     };
-
 
     themeVars.forEach((theme) => {
         document
@@ -96,11 +90,9 @@ export default function Sidebar({ state }) {
                     <div id="board-header-list">
                         <h3 id="board-list-title">
                             All Boards
-                            {numBoards.value() > 0
-                                ? ` (${numBoards.value()})`
-                                : ""}
+                            {numBoards > 0 ? ` (${numBoards})` : ""}
                         </h3>
-                        {boards.value.map((board) => {
+                        {kanbanLists.value.map((board) => {
                             return mapBoard(board);
                         })}
                         <div
