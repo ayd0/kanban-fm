@@ -11,9 +11,7 @@ export default function Sidebar({ state }) {
     const showNewTask = state.showNewTask;
 
     // local state
-
     const mapBoard = (board) => {
-        console.log(board.name.value);
         let imageStyle = selectedKanban.value === board.id ? "-selected" : "";
         return (
             <div

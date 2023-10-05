@@ -8,16 +8,26 @@ const createNewBoard = (newBoardName, boardCols) => {
 };
 
 const createNewBoardState = () => {
-    const showNewBoard = signal(false);
+    const showNewBoard = signal(true);
     const newBoardName = signal("");
-    const newBoardCols = signal({});
+    const newBoardCols = signal([
+        {
+            name: "Todo",
+        },
+        {
+            name: "Doing",
+        },
+        {
+            name: "Done",
+        },
+    ]);
 
     const resetBoardCols = () => {
         newBoardName.value = "";
-        newBoardCols.value = {};
-    }
+        newBoardCols.value = [];
+    };
 
-    return { showNewBoard, newBoardName, resetBoardCols };
+    return { showNewBoard, newBoardName, newBoardCols, resetBoardCols };
 };
 
 export default createNewBoardState;

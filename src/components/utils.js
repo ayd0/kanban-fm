@@ -1,4 +1,5 @@
 export const checkClientBounds = (e, state, cb) => {
+    // Issue with clicking last board-col-delete-btn in a list causing truthy statements
     if (e.clientX == e.offsetX && e.clientY == e.offsetY) {
         state.value = false;
         if (typeof cb === "function") cb();
