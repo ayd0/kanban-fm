@@ -17,8 +17,8 @@ export default function NewBoard({ state }) {
             <div>
                 <input
                     type="text"
-                    value={col.name.value}
-                    onChange={(e) => (col.name.value = e.target.value)}
+                    value={col.value.name.value}
+                    onChange={(e) => (col.value.name.value = e.target.value)}
                     placeholder="e.g. Todo"
                 />
                 <img
@@ -29,7 +29,7 @@ export default function NewBoard({ state }) {
                         const updatedBoardCols = newBoardCols.value;
                         updatedBoardCols.splice(
                             newBoardCols.value.findIndex(
-                                (found) => found.name === col.name
+                                (found) => found.name === col.value.name
                             ),
                             1
                         );

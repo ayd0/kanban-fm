@@ -48,25 +48,20 @@ const createKanbanState = () => {
     ]);
 
     const createBoard = (name, cols) => {
+        cols.forEach(col => {
+            col.value.color = "#fff"
+            col.value.tasks = [];
+        });
         let newKanban = {
             name: signal(name),
             id: kanbanLists.value[kanbanLists.value.length - 1].id + 1,
             // ^ arbitrary, will update later
             cols: signal([
-                cols.map((col) => {
-                    return signal({
-                        name: col.name.value,
-                        color: "#fff",
-                        tasks: [],
-                    });
-                }),
+                ...cols
             ]),
         }
 
-        const updatedKanbanList = kanbanLists.value;
-        updatedKanbanList.push(newKanban);
-
-        kanbanLists.value = updatedKanbanList;
+        kanbanLists.value = [...kanbanLists.value, newKanban];
     };
 
     const selectedKanban = signal(0);
