@@ -47,7 +47,7 @@ const createKanbanState = () => {
         },
     ]);
 
-    const createBoard = (name, cols) => {
+    const createBoard = signal((name, cols) => {
         kanbanLists.value = [
             ...kanbanLists.value,
             {
@@ -65,7 +65,7 @@ const createKanbanState = () => {
                 ],
             },
         ];
-    };
+    });
 
     const selectedKanban = signal(0);
     const numBoards = signal(kanbanLists.value.length);

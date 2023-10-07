@@ -1,8 +1,7 @@
-import { useSignal } from "@preact/signals";
 import { themeVars } from "./utils";
 import { checkClientBounds } from "./utils";
 
-export default function Sidebar({ state }) {
+export default function Sidebar({ state }, appState) {
     // global state
     const { showBoardModal, showSidebar, selectedBoard, themeDark, boards } =
         state.sidebar;
@@ -41,7 +40,7 @@ export default function Sidebar({ state }) {
     });
 
     return (
-        <div onClick={() => console.log(kanbanLists.value)}>
+        <div>
             <div
                 id="sidebar"
                 style={`display: ${showSidebar.value ? "flex" : "none"}`}

@@ -73,9 +73,8 @@ export default function NewBoard({ state }) {
                 <button
                     id="add-board-btn"
                     onClick={() => {
-                        createBoard(newBoardName.value, newBoardCols.value);
                         showNewBoard.value = false;
-                        resetBoardCols();
+                        console.log(showNewBoard.value);
                     }}
                 >
                     Create New Board

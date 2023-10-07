@@ -8,7 +8,7 @@ const createNewBoard = (newBoardName, boardCols) => {
 };
 
 const createNewBoardState = () => {
-    const showNewBoard = signal(true);
+    const showNewBoard = signal(false);
     const newBoardName = signal("");
     const newBoardCols = signal([
         {
