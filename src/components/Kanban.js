@@ -4,6 +4,7 @@ export default function Kanban({ state }) {
 
     // local state
     const mapCol = (col) => {
+        console.log(kanbanLists.value);
         console.log(col.value);
         return (
             <div class="kanban-col">

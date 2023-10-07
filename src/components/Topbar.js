@@ -1,9 +1,9 @@
 export default function Topbar({ state }) {
-    const selectedBoardName =
-        state.boards.value[state.selectedBoard.value].name;
     const showSidebar = state.showSidebar;
     const themeDark = state.themeDark;
     const showNewTask = state.showNewTask;
+    const selectedKanban = state.selectedKanban;
+    const kanbanLists = state.kanbanLists;
 
     return (
         <div id="topbar-container">
@@ -17,7 +17,7 @@ export default function Topbar({ state }) {
                     }.svg`}
                 />
             </div>
-            <h1>{selectedBoardName}</h1>
+            <h1>{kanbanLists.value[selectedKanban.value].name.value}</h1>
             <button onClick={() => (showNewTask.value = true)}>
                 <img src="./assets/icons/icon-add-task-mobile.svg" />
                 Add New Task

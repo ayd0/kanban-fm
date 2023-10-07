@@ -55,7 +55,7 @@ const createKanbanState = () => {
             cols: signal([
                 cols.map((col) => {
                     return signal({
-                        name: col.name,
+                        name: col.name.value,
                         color: "#fff",
                         tasks: [],
                     });
@@ -70,9 +70,8 @@ const createKanbanState = () => {
     };
 
     const selectedKanban = signal(0);
-    const numBoards = signal(kanbanLists.value.length);
 
-    return { kanbanLists, selectedKanban, numBoards, createBoard };
+    return { kanbanLists, selectedKanban, createBoard };
 };
 
 export default createKanbanState;

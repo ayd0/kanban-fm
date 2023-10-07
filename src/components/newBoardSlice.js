@@ -39,6 +39,7 @@ const createNewBoardState = () => {
 
     const addNewCol = () => {
         newBoardCols.value = [...newBoardCols.value, { name: signal("") }];
+        console.log(newBoardCols.value[0].name);
     }
 
     return { showNewBoard, newBoardName, newBoardCols, resetBoardCols, addNewCol };

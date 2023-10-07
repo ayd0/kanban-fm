@@ -28,8 +28,8 @@ export default function App() {
                         showSidebar: state.sidebar.showSidebar,
                         themeDark: state.sidebar.themeDark,
                         showNewTask: state.newTask.showNewTask,
-                        selectedBoard: state.sidebar.selectedBoard,
-                        boards: state.sidebar.boards,
+                        selectedKanban: state.kanban.selectedKanban,
+                        kanbanLists: state.kanban.kanbanLists,
                     }}
                 />
                 <Kanban

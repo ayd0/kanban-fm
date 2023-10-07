@@ -3,10 +3,9 @@ import { checkClientBounds } from "./utils";
 
 export default function Sidebar({ state }, appState) {
     // global state
-    const { showBoardModal, showSidebar, selectedBoard, themeDark, boards } =
+    const { showBoardModal, showSidebar, themeDark } =
         state.sidebar;
-    // implement to replace boards, selectedBoard, numBoards state
-    const { kanbanLists, selectedKanban, numBoards } = state.kanban;
+    const { kanbanLists, selectedKanban } = state.kanban;
     const showNewBoard = state.showNewBoard;
     const showNewTask = state.showNewTask;
 
@@ -44,7 +43,6 @@ export default function Sidebar({ state }, appState) {
             <div
                 id="sidebar"
                 style={`display: ${showSidebar.value ? "flex" : "none"}`}
-                onClick={() => console.log(kanbanLists.value)}
             >
                 <picture>
                     <source
@@ -65,7 +63,7 @@ export default function Sidebar({ state }, appState) {
                         (showBoardModal.value = !showBoardModal.value)
                     }
                 >
-                    {boards.value[selectedBoard.value].name}
+                    {kanbanLists.value[selectedKanban.value].name.value}
                 </h2>
                 <img
                     id="board-chevron"
@@ -90,7 +88,7 @@ export default function Sidebar({ state }, appState) {
                     <div id="board-header-list">
                         <h3 id="board-list-title">
                             All Boards
-                            {numBoards > 0 ? ` (${numBoards})` : ""}
+                            {kanbanLists.value.length > 0 ? ` (${kanbanLists.value.length})` : ""}
                         </h3>
                         {kanbanLists.value.map((board) => {
                             return mapBoard(board);
