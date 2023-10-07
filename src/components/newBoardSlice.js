@@ -24,7 +24,17 @@ const createNewBoardState = () => {
 
     const resetBoardCols = () => {
         newBoardName.value = "";
-        newBoardCols.value = [];
+        newBoardCols.value = [
+            {
+                name: "Todo",
+            },
+            {
+                name: "Doing",
+            },
+            {
+                name: "Done",
+            },
+        ];
     };
 
     return { showNewBoard, newBoardName, newBoardCols, resetBoardCols };

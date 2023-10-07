@@ -1,5 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { themeVars } from "./utils";
+import { checkClientBounds } from "./utils";
 
 export default function Sidebar({ state }) {
     // global state
@@ -84,6 +85,7 @@ export default function Sidebar({ state }) {
                 <div
                     id="board-header-container"
                     style={`display: ${showBoardModal.value ? "flex" : "none"}`}
+                    onCLick={(e) => checkClientBounds(e, showBoardModal, document.querySelector('#board-header-list'))}
                 >
                     <div id="board-header-list">
                         <h3 id="board-list-title">

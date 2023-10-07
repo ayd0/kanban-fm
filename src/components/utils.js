@@ -1,10 +1,16 @@
-export const checkClientBounds = (e, state, cb) => {
-    // Issue with clicking last board-col-delete-btn in a list causing truthy statements
-    if (e.clientX == e.offsetX && e.clientY == e.offsetY) {
-        state.value = false;
-        if (typeof cb === "function") cb();
+export const checkClientBounds = (e, state, target, cb=()=>{}) => {
+    const dims = target.getBoundingClientRect();
+
+    if (
+        e.clientY < dims.top ||
+        e.clientY > dims.bottom ||
+        e.clientX < dims.left ||
+        e.clientX > dims.right
+    ) {
+        state.value = !state.value;
+        cb();
     }
-};
+}
 
 export const themeVars = [
     {

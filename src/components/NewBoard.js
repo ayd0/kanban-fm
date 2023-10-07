@@ -36,9 +36,16 @@ export default function NewBoard({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewBoard.value ? "flex" : "none"}`}
-            onClick={(e) => checkClientBounds(e, showNewBoard, resetBoardCols)}
+            onClick={(e) =>
+                checkClientBounds(
+                    e,
+                    showNewBoard,
+                    document.querySelector('#new-board-modal'),
+                    resetBoardCols
+                )
+            }
         >
-            <div className="modal-list">
+            <div className="modal-list" id="new-board-modal">
                 <h3>Add New Board</h3>
                 <h4>Board Name</h4>
                 <input

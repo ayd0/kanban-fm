@@ -61,9 +61,9 @@ export default function NewTask({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewTask.value ? "flex" : "none"}`}
-            onClick={(e) => checkClientBounds(e, showNewTask)}
+            onClick={(e) => checkClientBounds(e, showNewTask, document.querySelector("#new-task-modal"))}
         >
-            <div className="modal-list">
+            <div className="modal-list" id="new-task-modal">
                 <h3>Add New Task</h3>
                 <h4>Title</h4>
                 <input type="text" placeholder="e.g. Take coffee break" />
