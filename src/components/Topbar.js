@@ -1,9 +1,7 @@
 export default function Topbar({ state }) {
-    const showSidebar = state.showSidebar;
-    const themeDark = state.themeDark;
+    const { showSidebar, themeDark } = state.sidebar;
+    const { selectedKanban, kanbanLists } = state.kanban;
     const showNewTask = state.showNewTask;
-    const selectedKanban = state.selectedKanban;
-    const kanbanLists = state.kanbanLists;
 
     return (
         <div id="topbar-container">

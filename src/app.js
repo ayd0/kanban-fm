@@ -25,11 +25,15 @@ export default function App() {
             <div id="content-container">
                 <Topbar
                     state={{
-                        showSidebar: state.sidebar.showSidebar,
-                        themeDark: state.sidebar.themeDark,
+                        sidebar: {
+                            showSidebar: state.sidebar.showSidebar,
+                            themeDark: state.sidebar.themeDark,
+                        },
+                        kanban: {
+                            selectedKanban: state.kanban.selectedKanban,
+                            kanbanLists: state.kanban.kanbanLists,
+                        },
                         showNewTask: state.newTask.showNewTask,
-                        selectedKanban: state.kanban.selectedKanban,
-                        kanbanLists: state.kanban.kanbanLists,
                     }}
                 />
                 <Kanban
