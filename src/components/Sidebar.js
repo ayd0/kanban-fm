@@ -44,6 +44,7 @@ export default function Sidebar({ state }, appState) {
             <div
                 id="sidebar"
                 style={`display: ${showSidebar.value ? "flex" : "none"}`}
+                onClick={() => console.log(kanbanLists.value)}
             >
                 <picture>
                     <source

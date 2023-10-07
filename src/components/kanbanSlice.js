@@ -47,25 +47,27 @@ const createKanbanState = () => {
         },
     ]);
 
-    const createBoard = signal((name, cols) => {
-        kanbanLists.value = [
-            ...kanbanLists.value,
-            {
-                name: signal(name),
-                id: kanbanLists.value[kanbanLists.value.length - 1].id + 1,
-                // ^ arbitrary, will update later
-                cols: [
-                    cols.map((col) => {
-                        return {
-                            name: col.name,
-                            color: "#fff",
-                            tasks: [],
-                        };
-                    }),
-                ],
-            },
-        ];
-    });
+    const createBoard = (name, cols) => {
+        let newKanban = {
+            name: signal(name),
+            id: kanbanLists.value[kanbanLists.value.length - 1].id + 1,
+            // ^ arbitrary, will update later
+            cols: signal([
+                cols.map((col) => {
+                    return signal({
+                        name: col.name,
+                        color: "#fff",
+                        tasks: [],
+                    });
+                }),
+            ]),
+        }
+
+        const updatedKanbanList = kanbanLists.value;
+        updatedKanbanList.push(newKanban);
+
+        kanbanLists.value = updatedKanbanList;
+    };
 
     const selectedKanban = signal(0);
     const numBoards = signal(kanbanLists.value.length);
