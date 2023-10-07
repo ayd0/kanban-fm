@@ -39,8 +39,7 @@ const createKanbanState = () => {
                     tasks: [
                         {
                             name: "Conduct 5 wireframe tests",
-                            subtasks: [
-                            ],
+                            subtasks: [],
                         },
                     ],
                 }),
@@ -48,10 +47,30 @@ const createKanbanState = () => {
         },
     ]);
 
+    const createBoard = (name, cols) => {
+        kanbanLists.value = [
+            ...kanbanLists.value,
+            {
+                name: signal(name),
+                id: kanbanLists.value[kanbanLists.value.length - 1].id + 1,
+                // ^ arbitrary, will update later
+                cols: [
+                    cols.map((col) => {
+                        return {
+                            name: col.name,
+                            color: "#fff",
+                            tasks: [],
+                        };
+                    }),
+                ],
+            },
+        ];
+    };
+
     const selectedKanban = signal(0);
     const numBoards = signal(kanbanLists.value.length);
 
-    return { kanbanLists, selectedKanban, numBoards };
+    return { kanbanLists, selectedKanban, numBoards, createBoard };
 };
 
 export default createKanbanState;

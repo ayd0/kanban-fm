@@ -47,7 +47,7 @@ export default function App() {
             <NewBoard
                 state={{
                     newBoard: state.newBoard,
-                    createBoard: state.sidebar.createBoard,
+                    createBoard: state.kanban.createBoard,
                 }}
             />
             <NewTask

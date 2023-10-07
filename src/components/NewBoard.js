@@ -2,20 +2,30 @@ import { checkClientBounds } from "./utils";
 
 export default function NewBoard({ state }) {
     // global state
-    const { showNewBoard, newBoardName, newBoardCols, resetBoardCols } =
-        state.newBoard;
+    const {
+        showNewBoard,
+        newBoardName,
+        newBoardCols,
+        resetBoardCols,
+        addNewCol,
+    } = state.newBoard;
+
     const createBoard = state.createBoard;
 
     const mapBoardCols = (col) => {
         return (
             <div>
-                <input type="text" value={col.name} />
+                <input
+                    type="text"
+                    value={col.name.value}
+                    onChange={(e) => (col.name.value = e.target.value)}
+                    placeholder="e.g. Todo"
+                />
                 <img
                     className="board-col-delete-btn"
                     src="./assets/icons/icon-cross.svg"
                     onClick={() => {
                         // TODO: Force unique names
-                        console.log("IN FUNC")
                         const updatedBoardCols = newBoardCols.value;
                         updatedBoardCols.splice(
                             newBoardCols.value.findIndex(
@@ -23,9 +33,7 @@ export default function NewBoard({ state }) {
                             ),
                             1
                         );
-                        console.log(updatedBoardCols);
                         newBoardCols.value = [...updatedBoardCols];
-                        console.log(newBoardCols.value);
                     }}
                 />
             </div>
@@ -40,7 +48,7 @@ export default function NewBoard({ state }) {
                 checkClientBounds(
                     e,
                     showNewBoard,
-                    document.querySelector('#new-board-modal'),
+                    document.querySelector("#new-board-modal"),
                     resetBoardCols
                 )
             }
@@ -58,16 +66,16 @@ export default function NewBoard({ state }) {
                 {newBoardCols.value.map((col) => {
                     return mapBoardCols(col);
                 })}
-                <button id="add-column-btn">
+                <button id="add-column-btn" onClick={() => addNewCol()}>
                     <img src="./assets/icons/icon-add-board-mobile.svg" />
                     Add New Column
                 </button>
                 <button
                     id="add-board-btn"
                     onClick={() => {
-                        createBoard(newBoardName.value);
-                        resetBoardCols();
+                        createBoard(newBoardName.value, newBoardCols.value);
                         showNewBoard.value = false;
+                        resetBoardCols();
                     }}
                 >
                     Create New Board

@@ -12,13 +12,13 @@ const createNewBoardState = () => {
     const newBoardName = signal("");
     const newBoardCols = signal([
         {
-            name: "Todo",
+            name: signal("Todo"),
         },
         {
-            name: "Doing",
+            name: signal("Doing"),
         },
         {
-            name: "Done",
+            name: signal("Done"),
         },
     ]);
 
@@ -26,18 +26,22 @@ const createNewBoardState = () => {
         newBoardName.value = "";
         newBoardCols.value = [
             {
-                name: "Todo",
+                name: signal("Todo"),
             },
             {
-                name: "Doing",
+                name: signal("Doing"),
             },
             {
-                name: "Done",
+                name: signal("Done"),
             },
         ];
     };
 
-    return { showNewBoard, newBoardName, newBoardCols, resetBoardCols };
+    const addNewCol = () => {
+        newBoardCols.value = [...newBoardCols.value, { name: signal("") }];
+    }
+
+    return { showNewBoard, newBoardName, newBoardCols, resetBoardCols, addNewCol };
 };
 
 export default createNewBoardState;
