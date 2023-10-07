@@ -4,20 +4,39 @@ export default function Kanban({ state }) {
 
     // local state
     const mapCol = (col) => {
+        let taskList;
+        if (col.value.tasks.length === 0) {
+            taskList = () => {
+                return (
+                    <div class="kanban-row">
+                        <h3>No Tasks Yet!</h3>
+                    </div>
+                );
+            };
+        } else {
+            taskList = () => {
+                return col.value.tasks.map((task) => {
+                    return (
+                        <div class="kanban-row">
+                            <h3>{task.name}</h3>
+                            <p>
+                                {task.subtasks.length > 0
+                                    ? `0 of ${task.subtasks.length} subtasks`
+                                    : "No subtasks"}
+                            </p>
+                        </div>
+                    );
+                });
+            };
+        }
+
         return (
             <div class="kanban-col">
                 <h4>
                     <div style={`background-color: ${col.value.color}`}></div>
                     {col.value.name + ` (${col.value.tasks.length})`}
                 </h4>
-                {col.value.tasks.map((task) => {
-                    return (
-                        <div class="kanban-row">
-                            <h3>{task.name}</h3>
-                            <p>{task.subtasks.length > 0 ? `0 of ${task.subtasks.length} subtasks` : "No subtasks"}</p>
-                        </div>
-                    );
-                })}
+                {taskList()}
             </div>
         );
     };
@@ -34,7 +53,6 @@ export default function Kanban({ state }) {
                 </button>
             </div>
             {kanbanLists.value[selectedKanban.value].cols.value.map((col) => {
-                console.log(col);
                 return mapCol(col);
             })}
         </div>
