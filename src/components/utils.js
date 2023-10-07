@@ -54,4 +54,14 @@ export const themeVars = [
         light: "var(--main-purple-light)",
         dark: "var(--white)",
     },
+    {
+        name: "--kanban-column",
+        light: "linear-gradient(rgba(233,239,250,1) 0%, rgba(233,239,250,.3) 50%)",
+        dark: "linear-gradient(rgba(43,44,55,1) 0%, rgba(43,44,55,0.3) 50%)",
+    },
+    {
+        name: "--kanban-column-hover",
+        light: "linear-gradient(rgba(233,239,250,1) 0%, rgba(233,239,250,.7) 100%)",
+        dark: "linear-gradient(rgba(43,44,55,1) 0%, rgba(43,44,55,0.3) 100%)",
+    },
 ];

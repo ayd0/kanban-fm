@@ -39,6 +39,7 @@ export default function App() {
                 <Kanban
                     state={{
                         kanban: state.kanban,
+                        showNewTask: state.newTask.showNewTask,
                     }}
                 />
             </div>

@@ -1,6 +1,7 @@
 export default function Kanban({ state }) {
     // global state
     const { kanbanLists, selectedKanban } = state.kanban;
+    const showNewTask = state.showNewTask;
 
     // local state
     const mapCol = (col) => {
@@ -8,8 +9,11 @@ export default function Kanban({ state }) {
         if (col.value.tasks.length === 0) {
             taskList = () => {
                 return (
-                    <div class="kanban-row">
-                        <h3>No Tasks Yet!</h3>
+                    <div class="kanban-row kanban-row-empty" onClick={() => showNewTask.value = true}>
+                        <div>
+                            <img src="./assets/icons/icon-add-task.svg" />
+                            <h1>Add Tasks</h1>
+                        </div>
                     </div>
                 );
             };
@@ -55,6 +59,18 @@ export default function Kanban({ state }) {
             {kanbanLists.value[selectedKanban.value].cols.value.map((col) => {
                 return mapCol(col);
             })}
+            <div class="kanban-col">
+                <h4 style="opacity: 0%;">a</h4>
+                <div
+                    class="kanban-row kanban-row-empty"
+                    onClick={() => {}}
+                >
+                    <div>
+                        <img src="./assets/icons/icon-add-task.svg" />
+                        <h1>New Column</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

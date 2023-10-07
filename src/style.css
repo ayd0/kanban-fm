@@ -32,7 +32,11 @@
 	/* alt: --very-dark-grey */
 	--subcomponent-color: var(--white);
 	/* alt: --main-purple-light */
-	--alt-btn-color: var(--white)
+	--alt-btn-color: var(--white);
+	/* alt: linear-gradient(90deg, rgba(233,239,250,1) 0%, rgba(233,239,250,.3) 50%);*/
+	--kanban-column: linear-gradient(rgba(43,44,55,1) 0%, rgba(43,44,55,0.3) 50%);
+	/* alt: linear-gradient(rgba(233,239,250,1) 0%, rgba(233,239,250,.3) 100%) */
+	--kanban-column-hover: linear-gradient(rgba(43,44,55,1) 0%, rgba(43,44,55,0.3) 100%);
 }
 
 @font-face {
@@ -303,6 +307,8 @@ body {
 
 .kanban-col {
 	margin-inline-start: 1rem;
+	display: flex;
+	flex-flow: column;
 }
 
 .kanban-col h4 {
@@ -335,6 +341,32 @@ body {
 
 .kanban-row p {
 	color: var(--medium-grey);
+}
+
+.kanban-row-empty {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+	color: var(--medium-grey);
+	background: var(--kanban-column);
+	box-shadow: none !important;
+	cursor: pointer;
+}
+
+.kanban-row-empty:hover {
+	background: var(--kanban-column-hover);
+}
+
+.kanban-row-empty div {
+	display: flex;
+	align-items: center;
+}
+
+.kanban-row-empty img {
+	height: 1.3ch;
+	margin-block-start: .5ch;
+	margin-inline-end: .5ch;
 }
 
 #add-new-col-btn {
