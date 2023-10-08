@@ -1,7 +1,7 @@
 export default function Kanban({ state }) {
     // global state
     const { kanbanLists, selectedKanban } = state.kanban;
-    const showNewTask = state.showNewTask;
+    const { showNewTask, selectedTaskStatus } = state.newTask;
 
     // local state
     const mapCol = (col) => {
@@ -10,7 +10,8 @@ export default function Kanban({ state }) {
             taskList = () => {
                 return (
                     <div class="kanban-row kanban-row-empty" onClick={() => {
-                        showNewTask.value = true
+                        showNewTask.value = true;
+                        selectedTaskStatus.value = col.value.name;
                     }}>
                         <div>
                             <img src="./assets/icons/icon-add-task.svg" />
@@ -40,7 +41,7 @@ export default function Kanban({ state }) {
             <div class="kanban-col">
                 <h4>
                     <div style={`background-color: ${col.value.color}`}></div>
-                    {col.value.name + ` (${col.value.tasks.value.length})`}
+                    {col.value.name.value.toUpperCase() + ` (${col.value.tasks.value.length})`}
                 </h4>
                 {taskList()}
             </div>

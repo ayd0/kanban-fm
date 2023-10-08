@@ -3,7 +3,7 @@ import { checkClientBounds } from "./utils";
 
 export default function Task({ state }) {
     // global state
-    const { showTask, taskStatusList, selectedTaskName } = state.task;
+    const { showTask, taskStatusList, currentSelectedTaskStatus } = state.task;
 
     // local state
     const showDropdown = useSignal(false);
@@ -12,7 +12,7 @@ export default function Task({ state }) {
         return (
             <p
                 onClick={() => {
-                    selectedTaskName.value = taskStatus.name;
+                    currentSelectedTaskStatus.value = taskStatus.name;
                 }}
             >
                 {taskStatus.name}
@@ -24,9 +24,15 @@ export default function Task({ state }) {
         <div
             className="modal-container"
             style={`display: ${showTask.value ? "flex" : "none"}`}
-            onClick={(e) => checkClientBounds(e, showTask)}
+            onClick={(e) =>
+                checkClientBounds(
+                    e,
+                    showTask,
+                    document.querySelector("#task-list")
+                )
+            }
         >
-            <div className="modal-list">
+            <div className="modal-list" id="task-list">
                 <div id="task-header">
                     <h3>Build UI for onboarding flow</h3>
                     <img src="./assets/icons/icon-vertical-ellipsis.svg" />
@@ -69,7 +75,7 @@ export default function Task({ state }) {
                     class="dropdown"
                     onClick={() => (showDropdown.value = !showDropdown.value)}
                 >
-                    <p>{selectedTaskName.value}</p>
+                    <p>{currentSelectedTaskStatus.value}</p>
                     <img
                         src={`./assets/icons/icon-chevron-${
                             showDropdown.value ? "up" : "down"

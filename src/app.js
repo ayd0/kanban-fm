@@ -19,7 +19,10 @@ export default function App() {
                     sidebar: state.sidebar,
                     kanban: state.kanban,
                     showNewBoard: state.newBoard.showNewBoard,
-                    showNewTask: state.newTask.showNewTask,
+                    newTask: {
+                        showNewTask: state.newTask.showNewTask,
+                        selectedTaskStatus: state.newTask.selectedTaskStatus,
+                    },
                 }}
             />
             <div id="content-container">
@@ -39,7 +42,11 @@ export default function App() {
                 <Kanban
                     state={{
                         kanban: state.kanban,
-                        showNewTask: state.newTask.showNewTask,
+                        newTask: {
+                            showNewTask: state.newTask.showNewTask,
+                            selectedTaskStatus:
+                                state.newTask.selectedTaskStatus,
+                        },
                     }}
                 />
             </div>

@@ -3,11 +3,10 @@ import { checkClientBounds } from "./utils";
 
 export default function Sidebar({ state }, appState) {
     // global state
-    const { showBoardModal, showSidebar, themeDark } =
-        state.sidebar;
+    const { showBoardModal, showSidebar, themeDark, resetSelectedTaskStatus } = state.sidebar;
     const { kanbanLists, selectedKanban } = state.kanban;
+    const { showNewTask, selectedTaskStatus } = state.newTask;
     const showNewBoard = state.showNewBoard;
-    const showNewTask = state.showNewTask;
 
     // local state
     const mapBoard = (board) => {
@@ -21,6 +20,11 @@ export default function Sidebar({ state }, appState) {
                 }`}
                 onClick={() => {
                     selectedKanban.value = board.id;
+                    resetSelectedTaskStatus(
+                        kanbanLists,
+                        selectedKanban,
+                        selectedTaskStatus
+                    );
                 }}
             >
                 <img src={`./assets/icons/icon-board${imageStyle}.svg`} />
@@ -83,12 +87,20 @@ export default function Sidebar({ state }, appState) {
                 <div
                     id="board-header-container"
                     style={`display: ${showBoardModal.value ? "flex" : "none"}`}
-                    onCLick={(e) => checkClientBounds(e, showBoardModal, document.querySelector('#board-header-list'))}
+                    onCLick={(e) =>
+                        checkClientBounds(
+                            e,
+                            showBoardModal,
+                            document.querySelector("#board-header-list")
+                        )
+                    }
                 >
                     <div id="board-header-list">
                         <h3 id="board-list-title">
                             All Boards
-                            {kanbanLists.value.length > 0 ? ` (${kanbanLists.value.length})` : ""}
+                            {kanbanLists.value.length > 0
+                                ? ` (${kanbanLists.value.length})`
+                                : ""}
                         </h3>
                         {kanbanLists.value.map((board) => {
                             return mapBoard(board);

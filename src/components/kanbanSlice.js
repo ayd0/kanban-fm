@@ -8,7 +8,7 @@ const createKanbanState = () => {
             id: 0,
             cols: signal([
                 signal({
-                    name: "TODO",
+                    name: signal("Todo"),
                     color: "#49C4E5",
                     tasks: signal([
                         {
@@ -22,7 +22,7 @@ const createKanbanState = () => {
                     ]),
                 }),
                 signal({
-                    name: signal("DOING"),
+                    name: signal("Doing"),
                     color: "#8471F2 !important",
                     tasks: signal([
                         {
@@ -34,7 +34,7 @@ const createKanbanState = () => {
                     ]),
                 }),
                 signal({
-                    name: signal("DONE"),
+                    name: signal("Done"),
                     color: "#67E2AE",
                     tasks: signal([
                         {
@@ -46,6 +46,8 @@ const createKanbanState = () => {
             ]),
         },
     ]);
+
+    const selectedKanban = signal(0);
 
     const createBoard = (name, cols) => {
         cols.forEach(col => {
@@ -63,8 +65,6 @@ const createKanbanState = () => {
 
         kanbanLists.value = [...kanbanLists.value, newKanban];
     };
-
-    const selectedKanban = signal(0);
 
     return { kanbanLists, selectedKanban, createBoard };
 };
