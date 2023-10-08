@@ -47,6 +47,7 @@ export default function App() {
                             selectedTaskStatus:
                                 state.newTask.selectedTaskStatus,
                         },
+                        showTask: state.task.showTask,
                     }}
                 />
             </div>
@@ -54,6 +55,7 @@ export default function App() {
             <Task
                 state={{
                     task: state.task,
+                    selectedTaskStatus: state.newTask.selectedTaskStatus,
                 }}
             />
             <NewBoard

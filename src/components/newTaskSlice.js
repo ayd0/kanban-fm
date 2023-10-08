@@ -26,7 +26,8 @@ const createNewTaskState = () => {
         );
 
         const newTask = {
-            name: taskName.value,
+            name: signal(taskName.value),
+            status: signal(selectedTaskStatus.value),
             subtasks: subtaskList.value,
         };
 

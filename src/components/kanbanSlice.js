@@ -13,6 +13,7 @@ const createKanbanState = () => {
                     tasks: signal([
                         {
                             name: signal("Build UI for onboarding flow"),
+                            status: signal('Todo'),
                             subtasks: [
                                 "Research competitor pricing and business models",
                                 "Outline a business model that works for our solution",
@@ -26,7 +27,8 @@ const createKanbanState = () => {
                     color: "#8471F2 !important",
                     tasks: signal([
                         {
-                            name: "Design settings and search pages",
+                            name: signal("Design settings and search pages"),
+                            status: signal('Doing'),
                             subtasks: [
                                 "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                             ],
@@ -38,7 +40,8 @@ const createKanbanState = () => {
                     color: "#67E2AE",
                     tasks: signal([
                         {
-                            name: "Conduct 5 wireframe tests",
+                            name: signal("Conduct 5 wireframe tests"),
+                            status: signal('Done'),
                             subtasks: [],
                         },
                     ]),

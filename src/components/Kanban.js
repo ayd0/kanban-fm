@@ -2,17 +2,22 @@ export default function Kanban({ state }) {
     // global state
     const { kanbanLists, selectedKanban } = state.kanban;
     const { showNewTask, selectedTaskStatus } = state.newTask;
+    const showTask = state.showTask;
 
     // local state
-    const mapCol = (col) => {
+    const mapCol = (col, colIdx) => {
         let taskList;
         if (col.value.tasks.value.length === 0) {
             taskList = () => {
                 return (
-                    <div class="kanban-row kanban-row-empty" onClick={() => {
-                        showNewTask.value = true;
-                        selectedTaskStatus.value = col.value.name;
-                    }}>
+                    <div
+                        class="kanban-row kanban-row-empty"
+                        onClick={() => {
+                            selectedTaskStatus.value = col.value.name.value;
+                            showNewTask.value = true;
+                            console.log(selectedTaskStatus.value);
+                        }}
+                    >
                         <div>
                             <img src="./assets/icons/icon-add-task.svg" />
                             <h1>Add Tasks</h1>
@@ -22,9 +27,23 @@ export default function Kanban({ state }) {
             };
         } else {
             taskList = () => {
-                return col.value.tasks.value.map((task) => {
+                return col.value.tasks.value.map((task, taskIdx) => {
                     return (
-                        <div class="kanban-row">
+                        <div
+                            class="kanban-row"
+                            onClick={() => {
+                                // TK DEV
+                                console.log(
+                                    kanbanLists.value[selectedKanban.value].cols
+                                        .value[colIdx].value.tasks.value[
+                                        taskIdx
+                                    ].name.value
+                                );
+                                selectedTaskStatus.value = col.value.name.value;
+                                showTask.value = true;
+                                console.log(selectedTaskStatus.value);
+                            }}
+                        >
                             <h3>{task.name}</h3>
                             <p>
                                 {task.subtasks.length > 0
@@ -41,7 +60,8 @@ export default function Kanban({ state }) {
             <div class="kanban-col">
                 <h4>
                     <div style={`background-color: ${col.value.color}`}></div>
-                    {col.value.name.value.toUpperCase() + ` (${col.value.tasks.value.length})`}
+                    {col.value.name.value.toUpperCase() +
+                        ` (${col.value.tasks.value.length})`}
                 </h4>
                 {taskList()}
             </div>
@@ -59,15 +79,14 @@ export default function Kanban({ state }) {
                     Add New Column
                 </button>
             </div>
-            {kanbanLists.value[selectedKanban.value].cols.value.map((col) => {
-                return mapCol(col);
-            })}
+            {kanbanLists.value[selectedKanban.value].cols.value.map(
+                (col, idx) => {
+                    return mapCol(col, idx);
+                }
+            )}
             <div class="kanban-col">
                 <h4 style="opacity: 0%;">a</h4>
-                <div
-                    class="kanban-row kanban-row-empty"
-                    onClick={() => {}}
-                >
+                <div class="kanban-row kanban-row-empty" onClick={() => {}}>
                     <div>
                         <img src="./assets/icons/icon-add-task.svg" />
                         <h1>New Column</h1>

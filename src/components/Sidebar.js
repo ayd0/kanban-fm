@@ -1,7 +1,7 @@
 import { themeVars } from "./utils";
 import { checkClientBounds } from "./utils";
 
-export default function Sidebar({ state }, appState) {
+export default function Sidebar({ state }) {
     // global state
     const { showBoardModal, showSidebar, themeDark, resetSelectedTaskStatus } = state.sidebar;
     const { kanbanLists, selectedKanban } = state.kanban;

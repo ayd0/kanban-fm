@@ -12,8 +12,9 @@ const createSidebarState = () => {
         selectedTaskStatus
     ) => {
         selectedTaskStatus.value =
-            kanbanLists.value[selectedKanban.value].cols.value[0].value.name
-                .value;
+            kanbanLists.value[
+                selectedKanban.value
+            ].cols.value[0].value.name.value;
     };
 
     return {

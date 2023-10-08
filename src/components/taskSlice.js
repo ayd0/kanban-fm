@@ -8,9 +8,8 @@ const createTaskState = () => {
         { name: "Doing", id: 1 },
         { name: "Done", id: 2 },
     ];
-    const currentSelectedTaskStatus = signal("Todo");
 
-    return { showTask, taskStatusList, currentSelectedTaskStatus };
+    return { showTask, taskStatusList };
 };
 
 export default createTaskState;

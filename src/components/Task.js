@@ -3,7 +3,8 @@ import { checkClientBounds } from "./utils";
 
 export default function Task({ state }) {
     // global state
-    const { showTask, taskStatusList, currentSelectedTaskStatus } = state.task;
+    const { showTask, taskStatusList } = state.task;
+    const selectedTaskStatus = state.selectedTaskStatus;
 
     // local state
     const showDropdown = useSignal(false);
@@ -12,7 +13,7 @@ export default function Task({ state }) {
         return (
             <p
                 onClick={() => {
-                    currentSelectedTaskStatus.value = taskStatus.name;
+                    selectedTaskStatus.value = taskStatus.name;
                 }}
             >
                 {taskStatus.name}
@@ -75,7 +76,7 @@ export default function Task({ state }) {
                     class="dropdown"
                     onClick={() => (showDropdown.value = !showDropdown.value)}
                 >
-                    <p>{currentSelectedTaskStatus.value}</p>
+                    <p>{selectedTaskStatus.value}</p>
                     <img
                         src={`./assets/icons/icon-chevron-${
                             showDropdown.value ? "up" : "down"
