@@ -3,7 +3,8 @@ import { checkClientBounds } from "./utils";
 
 export default function Task({ state }) {
     // global state
-    const { showTask, taskStatusList } = state.task;
+    const { showTask, taskStatusList, selectedTaskName, selectedTaskSubtasks } =
+        state.task;
     const selectedTaskStatus = state.selectedTaskStatus;
 
     // local state
@@ -21,6 +22,18 @@ export default function Task({ state }) {
         );
     };
 
+    const mapSubtasks = (subtask) => {
+        return (
+            <div className="subtask-item">
+                <input id="subtask-0" type="checkbox" />
+                <label for="subtask-0">
+                    {/* Issue with reading subtask value, signal in new board */}
+                    <h4>{subtask}</h4>
+                </label>
+            </div>
+        );
+    };
+
     return (
         <div
             className="modal-container"
@@ -35,7 +48,7 @@ export default function Task({ state }) {
         >
             <div className="modal-list" id="task-list">
                 <div id="task-header">
-                    <h3>Build UI for onboarding flow</h3>
+                    <h3>{selectedTaskName.value}</h3>
                     <img src="./assets/icons/icon-vertical-ellipsis.svg" />
                 </div>
                 <p>
@@ -43,33 +56,16 @@ export default function Task({ state }) {
                     details to its subtasks, ideally this will be exhaustive.
                 </p>
                 <div id="subtask-container">
-                    <h4 id="subtask-header">Subtasks (2 of 3)</h4>
-                    <div className="subtask-item">
-                        <input id="subtask-0" type="checkbox" />
-                        <label for="subtask-0">
-                            <h4>
-                                Research competitor pricing and business models
-                            </h4>
-                        </label>
-                    </div>
-                    <div className="subtask-item">
-                        <input id="subtask-1" type="checkbox" />
-                        <label for="subtask-1">
-                            <h4>
-                                Outline a business model that works for our
-                                solution
-                            </h4>
-                        </label>
-                    </div>
-                    <div className="subtask-item">
-                        <input id="subtask-2" type="checkbox" />
-                        <label for="subtask-2">
-                            <h4>
-                                Talk to potential customers about our proposal
-                                solution and ask for fair price expectency
-                            </h4>
-                        </label>
-                    </div>
+                    <h4 id="subtask-header">
+                        Subtasks (
+                        {selectedTaskSubtasks.value.length === 0
+                            ? "none"
+                            : `0 of ${selectedTaskSubtasks.value.length}`}
+                        )
+                    </h4>
+                    {selectedTaskSubtasks.value.map((subtask) => {
+                        return mapSubtasks(subtask);
+                    })}
                 </div>
                 <h4>Current Status</h4>
                 <div

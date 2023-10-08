@@ -47,7 +47,11 @@ export default function App() {
                             selectedTaskStatus:
                                 state.newTask.selectedTaskStatus,
                         },
-                        showTask: state.task.showTask,
+                        task: {
+                            showTask: state.task.showTask,
+                            selectedTaskName: state.task.selectedTaskName,
+                            selectedTaskSubtasks: state.task.selectedTaskSubtasks,
+                        },
                     }}
                 />
             </div>
