@@ -10,7 +10,7 @@ const createKanbanState = () => {
                 signal({
                     name: "TODO",
                     color: "#49C4E5",
-                    tasks: [
+                    tasks: signal([
                         {
                             name: "Build UI for onboarding flow",
                             subtasks: [
@@ -19,29 +19,29 @@ const createKanbanState = () => {
                                 "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                             ],
                         },
-                    ],
+                    ]),
                 }),
                 signal({
                     name: "DOING",
                     color: "#8471F2 !important",
-                    tasks: [
+                    tasks: signal([
                         {
                             name: "Design settings and search pages",
                             subtasks: [
                                 "Talk to potential customers about our proposed solution and ask for fair price expectancy",
                             ],
                         },
-                    ],
+                    ]),
                 }),
                 signal({
                     name: "DONE",
                     color: "#67E2AE",
-                    tasks: [
+                    tasks: signal([
                         {
                             name: "Conduct 5 wireframe tests",
                             subtasks: [],
                         },
-                    ],
+                    ]),
                 }),
             ]),
         },
@@ -49,8 +49,8 @@ const createKanbanState = () => {
 
     const createBoard = (name, cols) => {
         cols.forEach(col => {
-            col.value.color = "#fff"
-            col.value.tasks = [];
+            col.value.color = "#FFF"
+            col.value.tasks = signal([]);
         });
         let newKanban = {
             name: signal(name),

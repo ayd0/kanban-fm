@@ -6,7 +6,7 @@ export default function Kanban({ state }) {
     // local state
     const mapCol = (col) => {
         let taskList;
-        if (col.value.tasks.length === 0) {
+        if (col.value.tasks.value.length === 0) {
             taskList = () => {
                 return (
                     <div class="kanban-row kanban-row-empty" onClick={() => showNewTask.value = true}>
@@ -19,7 +19,7 @@ export default function Kanban({ state }) {
             };
         } else {
             taskList = () => {
-                return col.value.tasks.map((task) => {
+                return col.value.tasks.value.map((task) => {
                     return (
                         <div class="kanban-row">
                             <h3>{task.name}</h3>
@@ -38,7 +38,7 @@ export default function Kanban({ state }) {
             <div class="kanban-col">
                 <h4>
                     <div style={`background-color: ${col.value.color}`}></div>
-                    {col.value.name + ` (${col.value.tasks.length})`}
+                    {col.value.name + ` (${col.value.tasks.value.length})`}
                 </h4>
                 {taskList()}
             </div>

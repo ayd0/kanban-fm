@@ -1,7 +1,8 @@
 import { signal } from "@preact/signals";
 
 const createNewTaskState = () => {
-    const showNewTask = signal(false); 
+    const showNewTask = signal(true);
+    const taskName = signal("");
 
     const subtaskList = signal([
         { name: "", id: 0 },
@@ -13,9 +14,41 @@ const createNewTaskState = () => {
         { name: "Doing", id: 1 },
         { name: "Done", id: 2 },
     ];
-    const selectedTaskName = signal("Todo");
+    const selectedTaskStatus = signal(taskStatusList[0].name);
 
-    return { showNewTask, subtaskList, taskStatusList, selectedTaskName };
-}
+    const createTask = (kanbanLists, selectedKanban) => {
+        const kanbanColIndex = kanbanLists.value[
+            selectedKanban.value
+        ].cols.value.findIndex(
+            (col) =>
+                col.value.name.toLowerCase() ===
+                selectedTaskStatus.value.toLowerCase()
+        );
+
+
+        const newTask = {
+            name: taskName.value,
+            subtasks: subtaskList.value,
+        };
+
+        kanbanLists.value[selectedKanban.value].cols.value[
+            kanbanColIndex
+        ].value.tasks.value = [
+            ...kanbanLists.value[selectedKanban.value].cols.value[
+                kanbanColIndex
+            ].value.tasks.value,
+            newTask,
+        ];
+    };
+
+    return {
+        showNewTask,
+        taskName,
+        subtaskList,
+        taskStatusList,
+        selectedTaskStatus,
+        createTask,
+    };
+};
 
 export default createNewTaskState;

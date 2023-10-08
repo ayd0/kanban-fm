@@ -58,6 +58,10 @@ export default function App() {
             <NewTask
                 state={{
                     newTask: state.newTask,
+                    kanban: {
+                        kanbanLists: state.kanban.kanbanLists,
+                        selectedKanban: state.kanban.selectedKanban,
+                    },
                 }}
             />
         </div>

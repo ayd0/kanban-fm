@@ -8,8 +8,15 @@ import { checkClientBounds } from "./utils";
 
 export default function NewTask({ state }) {
     // global state
-    const { showNewTask, subtaskList, taskStatusList, selectedTaskName } =
-        state.newTask;
+    const {
+        showNewTask,
+        taskName,
+        subtaskList,
+        taskStatusList,
+        selectedTaskStatus,
+        createTask,
+    } = state.newTask;
+    const { kanbanLists, selectedKanban } = state.kanban;
 
     // local state
     const showDropdown = useSignal(false);
@@ -49,7 +56,7 @@ export default function NewTask({ state }) {
         return (
             <p
                 onClick={() => {
-                    selectedTaskName.value = taskStatus.name;
+                    selectedTaskStatus.value = taskStatus.name;
                 }}
             >
                 {taskStatus.name}
@@ -61,12 +68,23 @@ export default function NewTask({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewTask.value ? "flex" : "none"}`}
-            onClick={(e) => checkClientBounds(e, showNewTask, document.querySelector("#new-task-modal"))}
+            onClick={(e) =>
+                checkClientBounds(
+                    e,
+                    showNewTask,
+                    document.querySelector("#new-task-modal")
+                )
+            }
         >
             <div className="modal-list" id="new-task-modal">
                 <h3>Add New Task</h3>
                 <h4>Title</h4>
-                <input type="text" placeholder="e.g. Take coffee break" />
+                <input
+                    type="text"
+                    placeholder="e.g. Take a coffee break"
+                    onChange={(e) => (taskName.value = e.target.value)}
+                    value={taskName.value}
+                />
                 <h4>Description</h4>
                 <textarea
                     rows="5"
@@ -101,7 +119,7 @@ export default function NewTask({ state }) {
                     class="dropdown"
                     onClick={() => (showDropdown.value = !showDropdown.value)}
                 >
-                    <p>{selectedTaskName.value}</p>
+                    <p>{selectedTaskStatus.value}</p>
                     <img
                         src={`./assets/icons/icon-chevron-${
                             showDropdown.value ? "up" : "down"
@@ -120,7 +138,10 @@ export default function NewTask({ state }) {
                 </div>
                 <button
                     id="new-task-btn"
-                    onClick={() => (showNewTask.value = false)}
+                    onClick={() => {
+                        createTask(kanbanLists, selectedKanban);
+                        showNewTask.value = false;
+                    }}
                 >
                     Create New Task
                 </button>
