@@ -9,7 +9,9 @@ export default function Kanban({ state }) {
         if (col.value.tasks.value.length === 0) {
             taskList = () => {
                 return (
-                    <div class="kanban-row kanban-row-empty" onClick={() => showNewTask.value = true}>
+                    <div class="kanban-row kanban-row-empty" onClick={() => {
+                        showNewTask.value = true
+                    }}>
                         <div>
                             <img src="./assets/icons/icon-add-task.svg" />
                             <h1>Add Tasks</h1>

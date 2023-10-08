@@ -12,7 +12,7 @@ const createKanbanState = () => {
                     color: "#49C4E5",
                     tasks: signal([
                         {
-                            name: "Build UI for onboarding flow",
+                            name: signal("Build UI for onboarding flow"),
                             subtasks: [
                                 "Research competitor pricing and business models",
                                 "Outline a business model that works for our solution",
@@ -22,7 +22,7 @@ const createKanbanState = () => {
                     ]),
                 }),
                 signal({
-                    name: "DOING",
+                    name: signal("DOING"),
                     color: "#8471F2 !important",
                     tasks: signal([
                         {
@@ -34,7 +34,7 @@ const createKanbanState = () => {
                     ]),
                 }),
                 signal({
-                    name: "DONE",
+                    name: signal("DONE"),
                     color: "#67E2AE",
                     tasks: signal([
                         {

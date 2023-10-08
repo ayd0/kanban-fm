@@ -1,7 +1,7 @@
 import { signal } from "@preact/signals";
 
 const createNewTaskState = () => {
-    const showNewTask = signal(true);
+    const showNewTask = signal(false);
     const taskName = signal("");
 
     const subtaskList = signal([
@@ -21,10 +21,9 @@ const createNewTaskState = () => {
             selectedKanban.value
         ].cols.value.findIndex(
             (col) =>
-                col.value.name.toLowerCase() ===
+                col.value.name.value.toLowerCase() ===
                 selectedTaskStatus.value.toLowerCase()
         );
-
 
         const newTask = {
             name: taskName.value,
