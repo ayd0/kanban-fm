@@ -20,6 +20,7 @@ export default function NewTask({ state }) {
 
     // local state
     const showDropdown = useSignal(false);
+    let taskDescription = "";
 
     const mapSubtask = (subTask, idx) => {
         return (
@@ -27,6 +28,7 @@ export default function NewTask({ state }) {
                 <input
                     type="text"
                     value={subTask.name}
+                    onChange={(e) => (subTask.name = e.target.value)}
                     placeholder={`Subtask ${idx + 1}`}
                 />
                 <img
@@ -89,6 +91,8 @@ export default function NewTask({ state }) {
                 <textarea
                     rows="5"
                     placeholder="e.g. it's always good to take a break. This 15 minute break will recharge the batteries a little."
+                    onChange={(e) => (taskDescription = e.target.value)}
+                    value={taskDescription}
                 />
                 <h4>Subtasks</h4>
                 {subtaskList.value.map((subTask, idx) => {
@@ -139,7 +143,7 @@ export default function NewTask({ state }) {
                 <button
                     id="new-task-btn"
                     onClick={() => {
-                        createTask(kanbanLists, selectedKanban);
+                        createTask(kanbanLists, selectedKanban, taskDescription);
                         showNewTask.value = false;
                     }}
                 >

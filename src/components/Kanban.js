@@ -2,7 +2,12 @@ export default function Kanban({ state }) {
     // global state
     const { kanbanLists, selectedKanban } = state.kanban;
     const { showNewTask, selectedTaskStatus } = state.newTask;
-    const { showTask, selectedTaskName, selectedTaskSubtasks } = state.task;
+    const {
+        showTask,
+        selectedTaskName,
+        selectedTaskSubtasks,
+        selectedTaskDescription,
+    } = state.task;
 
     // local state
     const mapCol = (col, colIdx) => {
@@ -31,16 +36,20 @@ export default function Kanban({ state }) {
                         <div
                             class="kanban-row"
                             onClick={() => {
-                                let taskSelection = 
-                                    kanbanLists.value[
-                                        selectedKanban.value
-                                    ].cols.value[colIdx].value.tasks.value[
+                                let taskSelection =
+                                    kanbanLists.value[selectedKanban.value].cols
+                                        .value[colIdx].value.tasks.value[
                                         taskIdx
                                     ];
-                                selectedTaskName.value = taskSelection.name.value;
-                                selectedTaskSubtasks.value = taskSelection.subtasks;
+                                selectedTaskName.value =
+                                    taskSelection.name.value;
+                                selectedTaskDescription.value =
+                                    taskSelection.description.value;
+                                selectedTaskSubtasks.value =
+                                    taskSelection.subtasks;
                                 selectedTaskStatus.value = col.value.name.value;
                                 showTask.value = true;
+                                console.log(selectedTaskDescription.value);
                             }}
                         >
                             <h3>{task.name}</h3>

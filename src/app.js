@@ -51,6 +51,7 @@ export default function App() {
                             showTask: state.task.showTask,
                             selectedTaskName: state.task.selectedTaskName,
                             selectedTaskSubtasks: state.task.selectedTaskSubtasks,
+                            selectedTaskDescription: state.task.selectedTaskDescription,
                         },
                     }}
                 />

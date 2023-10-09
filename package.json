@@ -25,6 +25,7 @@
   "dependencies": {
     "@preact/signals": "^1.2.1",
     "preact": "^10.1.0",
-    "preact-render-to-string": "^5.1.2"
+    "preact-render-to-string": "^5.1.2",
+    "uuid": "^9.0.1"
   }
 }

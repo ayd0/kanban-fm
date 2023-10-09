@@ -5,8 +5,8 @@ const createNewTaskState = () => {
     const taskName = signal("");
 
     const subtaskList = signal([
-        { name: "", id: 0 },
-        { name: "", id: 1 },
+        { name: "" },
+        { name: "" },
     ]);
 
     const taskStatusList = [
@@ -16,7 +16,7 @@ const createNewTaskState = () => {
     ];
     const selectedTaskStatus = signal(taskStatusList[0].name);
 
-    const createTask = (kanbanLists, selectedKanban) => {
+    const createTask = (kanbanLists, selectedKanban, taskDescription) => {
         const kanbanColIndex = kanbanLists.value[
             selectedKanban.value
         ].cols.value.findIndex(
@@ -25,9 +25,14 @@ const createNewTaskState = () => {
                 selectedTaskStatus.value.toLowerCase()
         );
 
+        subtaskList.value.forEach(
+            (subtask) => (subtask.selected = signal(false))
+        );
+
         const newTask = {
             name: signal(taskName.value),
             status: signal(selectedTaskStatus.value),
+            description: signal(taskDescription),
             subtasks: subtaskList.value,
         };
 

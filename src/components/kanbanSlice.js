@@ -13,11 +13,23 @@ const createKanbanState = () => {
                     tasks: signal([
                         {
                             name: signal("Build UI for onboarding flow"),
-                            status: signal('Todo'),
+                            status: signal("Todo"),
+                            description: signal(
+                                "This is a description of the task including any relavent details to its subtasks, ideally this will be exhaustive."
+                            ),
                             subtasks: [
-                                "Research competitor pricing and business models",
-                                "Outline a business model that works for our solution",
-                                "Talk to potential customers about our proposed solution and ask for fair price expectancy",
+                                {
+                                    name: "Research competitor pricing and business models",
+                                    selected: signal(false),
+                                },
+                                {
+                                    name: "Outline a business model that works for our solution",
+                                    selected: signal(false),
+                                },
+                                {
+                                    name: "Talk to potential customers about our proposed solution and ask for fair price expectancy",
+                                    selected: signal(false),
+                                },
                             ],
                         },
                     ]),
@@ -28,9 +40,15 @@ const createKanbanState = () => {
                     tasks: signal([
                         {
                             name: signal("Design settings and search pages"),
-                            status: signal('Doing'),
+                            status: signal("Doing"),
+                            description: signal(
+                                "This is a description of the task including any relavent details to its subtasks, ideally this will be exhaustive."
+                            ),
                             subtasks: [
-                                "Talk to potential customers about our proposed solution and ask for fair price expectancy",
+                                {
+                                    name: "Talk to potential customers about our proposed solution and ask for fair price expectancy",
+                                    selected: signal(false),
+                                },
                             ],
                         },
                     ]),
@@ -41,7 +59,10 @@ const createKanbanState = () => {
                     tasks: signal([
                         {
                             name: signal("Conduct 5 wireframe tests"),
-                            status: signal('Done'),
+                            status: signal("Done"),
+                            description: signal(
+                                "This is a description of the task including any relavent details to its subtasks, ideally this will be exhaustive."
+                            ),
                             subtasks: [],
                         },
                     ]),
@@ -53,18 +74,16 @@ const createKanbanState = () => {
     const selectedKanban = signal(0);
 
     const createBoard = (name, cols) => {
-        cols.forEach(col => {
-            col.value.color = "#FFF"
+        cols.forEach((col) => {
+            col.value.color = "#FFF";
             col.value.tasks = signal([]);
         });
         let newKanban = {
             name: signal(name),
             id: kanbanLists.value[kanbanLists.value.length - 1].id + 1,
             // ^ arbitrary, will update later
-            cols: signal([
-                ...cols
-            ]),
-        }
+            cols: signal([...cols]),
+        };
 
         kanbanLists.value = [...kanbanLists.value, newKanban];
     };
