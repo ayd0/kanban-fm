@@ -32,6 +32,10 @@ export default function Kanban({ state }) {
         } else {
             taskList = () => {
                 return col.value.tasks.value.map((task, taskIdx) => {
+                    let selectedSubtasks = 0;
+                    task.subtasks.forEach((subtask) => {
+                        if (subtask.selected.value) selectedSubtasks++;
+                    });
                     return (
                         <div
                             class="kanban-row"
@@ -54,7 +58,7 @@ export default function Kanban({ state }) {
                             <h3>{task.name}</h3>
                             <p>
                                 {task.subtasks.length > 0
-                                    ? `0 of ${task.subtasks.length} subtasks`
+                                    ? `${selectedSubtasks} of ${task.subtasks.length} subtasks`
                                     : "No subtasks"}
                             </p>
                         </div>
