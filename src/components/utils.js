@@ -3,22 +3,26 @@ export const checkClientBounds = (
     state,
     target,
     cb = () => {},
-    override = false
+    override = null
 ) => {
-    const dims = target.getBoundingClientRect();
+    let dims = target.getBoundingClientRect();
+    let botOverride = dims.bottom;
+    // for override to work, click event must be set to capture
+    if (override !== null) {
+        override = override.getBoundingClientRect();
+        console.log(override);
+        if (override.bottom > 0) botOverride = override.bottom;
+    }
 
-    // TODO: setup override to account for NewTask dropdown
-    if (!override) {
-        if (
-            (e.clientY < dims.top ||
-                e.clientY > dims.bottom ||
-                e.clientX < dims.left ||
-                e.clientX > dims.right) &&
-            (dims.top > 0 || dims.bottom > 0 || dims.left > 0 || dims.right > 0)
-        ) {
-            state.value = false;
-            cb();
-        }
+    if (
+        (e.clientY < dims.top ||
+            e.clientY > botOverride ||
+            e.clientX < dims.left ||
+            e.clientX > dims.right) &&
+        (dims.top > 0 || botOverride > 0 || dims.left > 0 || dims.right > 0)
+    ) {
+        state.value = false;
+        cb();
     }
 };
 

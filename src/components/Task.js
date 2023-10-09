@@ -13,10 +13,9 @@ export default function Task({ state }) {
     } = state.task;
     const selectedTaskStatus = state.selectedTaskStatus;
 
-    console.log(selectedTaskDescription.value);
-
     // local state
     const showDropdown = useSignal(false);
+    let dropdownBounds = 0;
 
     const mapTaskStatus = (taskStatus) => {
         return (
@@ -62,13 +61,16 @@ export default function Task({ state }) {
         <div
             className="modal-container"
             style={`display: ${showTask.value ? "flex" : "none"}`}
-            onClick={(e) =>
+            onClickCapture={(e) => {
+                console.log(e);
                 checkClientBounds(
                     e,
                     showTask,
-                    document.querySelector("#task-list")
-                )
-            }
+                    document.querySelector("#task-list"),
+                    () => {}, // TK Dev
+                    document.querySelector('#task-dropdown > .dropdown-content')
+                );
+            }}
         >
             <div className="modal-list" id="task-list">
                 <div id="task-header">
@@ -91,7 +93,10 @@ export default function Task({ state }) {
                 <h4>Current Status</h4>
                 <div
                     class="dropdown"
-                    onClick={() => (showDropdown.value = !showDropdown.value)}
+                    id="task-dropdown"
+                    onClick={() => {
+                        showDropdown.value = !showDropdown.value;
+                    }}
                 >
                     <p>{selectedTaskStatus.value}</p>
                     <img

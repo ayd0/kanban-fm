@@ -70,11 +70,13 @@ export default function NewTask({ state }) {
         <div
             className="modal-container"
             style={`display: ${showNewTask.value ? "flex" : "none"}`}
-            onClick={(e) =>
+            onClickCapture={(e) =>
                 checkClientBounds(
                     e,
                     showNewTask,
-                    document.querySelector("#new-task-modal")
+                    document.querySelector("#new-task-modal"),
+                    () => {}, // TK DEV
+                    document.querySelector('#new-task-dropdown > .dropdown-content')
                 )
             }
         >
@@ -121,6 +123,7 @@ export default function NewTask({ state }) {
                 <h4>Status</h4>
                 <div
                     class="dropdown"
+                    id="new-task-dropdown"
                     onClick={() => (showDropdown.value = !showDropdown.value)}
                 >
                     <p>{selectedTaskStatus.value}</p>
