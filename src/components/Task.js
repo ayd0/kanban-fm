@@ -13,6 +13,8 @@ export default function Task({ state }) {
     } = state.task;
     const selectedTaskStatus = state.selectedTaskStatus;
 
+    console.log(selectedTaskDescription.value);
+
     // local state
     const showDropdown = useSignal(false);
 
@@ -42,7 +44,15 @@ export default function Task({ state }) {
                 />
                 <label for={id}>
                     {/* Issue with reading subtask value, signal in new board */}
-                    <h4>{subtask.name}</h4>
+                    <h4
+                        style={`${
+                            subtask.selected.value === true
+                                ? "text-decoration: line-through;"
+                                : ""
+                        }`}
+                    >
+                        {subtask.name}
+                    </h4>
                 </label>
             </div>
         );

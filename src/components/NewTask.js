@@ -20,7 +20,7 @@ export default function NewTask({ state }) {
 
     // local state
     const showDropdown = useSignal(false);
-    let taskDescription = "";
+    const taskDescription = useSignal("");
 
     const mapSubtask = (subTask, idx) => {
         return (
@@ -91,8 +91,8 @@ export default function NewTask({ state }) {
                 <textarea
                     rows="5"
                     placeholder="e.g. it's always good to take a break. This 15 minute break will recharge the batteries a little."
-                    onChange={(e) => (taskDescription = e.target.value)}
-                    value={taskDescription}
+                    onChange={(e) => (taskDescription.value = e.target.value)}
+                    value={taskDescription.value}
                 />
                 <h4>Subtasks</h4>
                 {subtaskList.value.map((subTask, idx) => {

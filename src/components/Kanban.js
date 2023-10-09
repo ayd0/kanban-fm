@@ -49,7 +49,6 @@ export default function Kanban({ state }) {
                                     taskSelection.subtasks;
                                 selectedTaskStatus.value = col.value.name.value;
                                 showTask.value = true;
-                                console.log(selectedTaskDescription.value);
                             }}
                         >
                             <h3>{task.name}</h3>
