@@ -8,6 +8,7 @@ export default function Kanban({ state }) {
         selectedTaskSubtasks,
         selectedTaskDescription,
     } = state.task;
+    const showEditBoard = state.showEditBoard;
 
     // local state
     const mapCol = (col, colIdx) => {
@@ -97,7 +98,7 @@ export default function Kanban({ state }) {
             )}
             <div class="kanban-col">
                 <h4 style="opacity: 0%;">a</h4>
-                <div class="kanban-row kanban-row-empty" onClick={() => {}}>
+                <div class="kanban-row kanban-row-empty" onClick={() => showEditBoard.value = true}>
                     <div>
                         <img src="./assets/icons/icon-add-task.svg" />
                         <h1>New Column</h1>

@@ -5,8 +5,9 @@ import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import Kanban from "./components/Kanban";
 import Task from "./components/Task";
-import NewBoard from "./components/NewBoard";
 import NewTask from "./components/NewTask";
+import NewBoard from "./components/NewBoard";
+import EditBoard from "./components/EditBoard";
 
 export default function App() {
     // global state
@@ -55,6 +56,7 @@ export default function App() {
                             selectedTaskDescription:
                                 state.task.selectedTaskDescription,
                         },
+                        showEditBoard: state.editBoard.showEditBoard,
                     }}
                 />
             </div>
@@ -69,12 +71,6 @@ export default function App() {
                     },
                 }}
             />
-            <NewBoard
-                state={{
-                    newBoard: state.newBoard,
-                    createBoard: state.kanban.createBoard,
-                }}
-            />
             <NewTask
                 state={{
                     newTask: state.newTask,
@@ -82,6 +78,17 @@ export default function App() {
                         kanbanLists: state.kanban.kanbanLists,
                         selectedKanban: state.kanban.selectedKanban,
                     },
+                }}
+            />
+            <NewBoard
+                state={{
+                    newBoard: state.newBoard,
+                    createBoard: state.kanban.createBoard,
+                }}
+            />
+            <EditBoard
+                state={{
+                    editBoard: state.editBoard,
                 }}
             />
         </div>
