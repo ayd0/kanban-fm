@@ -12,7 +12,6 @@ export default function NewTask({ state }) {
         showNewTask,
         taskName,
         subtaskList,
-        taskStatusList,
         selectedTaskStatus,
         createTask,
     } = state.newTask;
@@ -21,6 +20,11 @@ export default function NewTask({ state }) {
     // local state
     const showDropdown = useSignal(false);
     const taskDescription = useSignal("");
+    const selectedTaskStatusList = kanbanLists.value[
+        selectedKanban.value
+    ].cols.value.map((col) => {
+        return { name: col.value.name.value };
+    });
 
     const mapSubtask = (subTask, idx) => {
         return (
@@ -138,7 +142,7 @@ export default function NewTask({ state }) {
                             showDropdown.value ? "flex" : "none"
                         }`}
                     >
-                        {taskStatusList.map((taskStatus) => {
+                        {selectedTaskStatusList.map((taskStatus) => {
                             return mapTaskStatus(taskStatus);
                         })}
                     </div>

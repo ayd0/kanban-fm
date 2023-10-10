@@ -9,12 +9,7 @@ const createNewTaskState = () => {
         { name: "" },
     ]);
 
-    const taskStatusList = [
-        { name: "Todo", id: 0 },
-        { name: "Doing", id: 1 },
-        { name: "Done", id: 2 },
-    ];
-    const selectedTaskStatus = signal(taskStatusList[0].name);
+    const selectedTaskStatus = signal("");
 
     const createTask = (kanbanLists, selectedKanban, taskDescription) => {
         const kanbanColIndex = kanbanLists.value[
@@ -50,7 +45,6 @@ const createNewTaskState = () => {
         showNewTask,
         taskName,
         subtaskList,
-        taskStatusList,
         selectedTaskStatus,
         createTask,
     };

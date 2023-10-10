@@ -88,7 +88,15 @@ const createKanbanState = () => {
         kanbanLists.value = [...kanbanLists.value, newKanban];
     };
 
-    return { kanbanLists, selectedKanban, createBoard };
+    const getSelectedTaskStatusList = () => {
+        return [
+            kanbanLists.value[selectedKanban.value].cols.value.map(
+                (col) => col.value.name.value
+            ),
+        ];
+    };
+
+    return { kanbanLists, selectedKanban, createBoard, getSelectedTaskStatusList };
 };
 
 export default createKanbanState;

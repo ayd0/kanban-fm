@@ -11,11 +11,16 @@ export default function Task({ state }) {
         selectedTaskSubtasks,
         selectedTaskDescription,
     } = state.task;
+    const { kanbanLists, selectedKanban } = state.kanban;
     const selectedTaskStatus = state.selectedTaskStatus;
 
     // local state
     const showDropdown = useSignal(false);
-    let dropdownBounds = 0;
+    const selectedTaskStatusList = kanbanLists.value[
+        selectedKanban.value
+    ].cols.value.map((col) => {
+        return { name: col.value.name.value };
+    });
 
     const mapTaskStatus = (taskStatus) => {
         return (
@@ -62,13 +67,12 @@ export default function Task({ state }) {
             className="modal-container"
             style={`display: ${showTask.value ? "flex" : "none"}`}
             onClickCapture={(e) => {
-                console.log(e);
                 checkClientBounds(
                     e,
                     showTask,
                     document.querySelector("#task-list"),
                     () => {}, // TK Dev
-                    document.querySelector('#task-dropdown > .dropdown-content')
+                    document.querySelector("#task-dropdown > .dropdown-content")
                 );
             }}
         >
@@ -110,7 +114,7 @@ export default function Task({ state }) {
                             showDropdown.value ? "flex" : "none"
                         }`}
                     >
-                        {taskStatusList.map((taskStatus) => {
+                        {selectedTaskStatusList.map((taskStatus) => {
                             return mapTaskStatus(taskStatus);
                         })}
                     </div>

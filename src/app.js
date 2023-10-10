@@ -50,8 +50,10 @@ export default function App() {
                         task: {
                             showTask: state.task.showTask,
                             selectedTaskName: state.task.selectedTaskName,
-                            selectedTaskSubtasks: state.task.selectedTaskSubtasks,
-                            selectedTaskDescription: state.task.selectedTaskDescription,
+                            selectedTaskSubtasks:
+                                state.task.selectedTaskSubtasks,
+                            selectedTaskDescription:
+                                state.task.selectedTaskDescription,
                         },
                     }}
                 />
@@ -61,6 +63,10 @@ export default function App() {
                 state={{
                     task: state.task,
                     selectedTaskStatus: state.newTask.selectedTaskStatus,
+                    kanban: {
+                        kanbanLists: state.kanban.kanbanLists,
+                        selectedKanban: state.kanban.selectedKanban,
+                    },
                 }}
             />
             <NewBoard

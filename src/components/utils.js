@@ -10,7 +10,6 @@ export const checkClientBounds = (
     // for override to work, click event must be set to capture
     if (override !== null) {
         override = override.getBoundingClientRect();
-        console.log(override);
         if (override.bottom > 0) botOverride = override.bottom;
     }
 
