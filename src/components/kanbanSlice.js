@@ -20,7 +20,7 @@ const createKanbanState = () => {
                             subtasks: [
                                 {
                                     name: "Research competitor pricing and business models",
-                                    selected: signal(false),
+                                    selected: signal(true),
                                 },
                                 {
                                     name: "Outline a business model that works for our solution",

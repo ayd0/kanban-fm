@@ -26,7 +26,39 @@ export default function Task({ state }) {
         return (
             <p
                 onClick={() => {
-                    selectedTaskStatus.value = taskStatus.name;
+                    if (selectedTaskStatus.value !== taskStatus.name) {
+                        const prevTaskStatus = selectedTaskStatus.value;
+                        const kanbanCols =
+                            kanbanLists.value[selectedKanban.value].cols;
+                        selectedTaskStatus.value = taskStatus.name;
+
+                        const prevColIdx = kanbanCols.value.findIndex(
+                            (col) => col.value.name.value === prevTaskStatus
+                        );
+                        const newColIdx = kanbanCols.value.findIndex(
+                            (col) =>
+                                col.value.name.value ===
+                                selectedTaskStatus.value
+                        );
+                        const prevTaskIdx = kanbanCols.value[
+                            prevColIdx
+                        ].value.tasks.value.findIndex(
+                            (task) => task.name.value === selectedTaskName.value
+                        );
+
+                        let updatedPrevCol =
+                            kanbanCols.value[prevColIdx].value.tasks.value;
+                        let updatedNewCol = [
+                            ...kanbanCols.value[newColIdx].value.tasks.value,
+                            ...updatedPrevCol.splice(prevTaskIdx, 1),
+                        ];
+                        kanbanCols.value[prevColIdx].value.tasks.value = [
+                            ...updatedPrevCol,
+                        ];
+                        kanbanCols.value[newColIdx].value.tasks.value = [
+                            ...updatedNewCol,
+                        ];
+                    }
                 }}
             >
                 {taskStatus.name}
