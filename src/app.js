@@ -89,6 +89,10 @@ export default function App() {
             <EditBoard
                 state={{
                     editBoard: state.editBoard,
+                    kanban: {
+                        kanbanLists: state.kanban.kanbanLists,
+                        selectedKanban: state.kanban.selectedKanban,
+                    },
                 }}
             />
         </div>
