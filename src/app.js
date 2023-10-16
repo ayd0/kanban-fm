@@ -92,6 +92,7 @@ export default function App() {
                     kanban: {
                         kanbanLists: state.kanban.kanbanLists,
                         selectedKanban: state.kanban.selectedKanban,
+                        editKanban: state.kanban.editKanban,
                     },
                 }}
             />

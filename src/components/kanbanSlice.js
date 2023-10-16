@@ -96,7 +96,60 @@ const createKanbanState = () => {
         ];
     };
 
-    return { kanbanLists, selectedKanban, createBoard, getSelectedTaskStatusList };
+    const editKanban = (updatedName, updatedCols) => {
+        const kanban = kanbanLists.value[selectedKanban.value];
+        kanban.name.value = updatedName;
+        updatedCols.value.forEach((col, idx) => {
+            if (col.inKanban) {
+                if (col.deleted) {
+                    let editCols = kanban.cols.value;
+                    editCols.splice(
+                        editCols.findIndex(
+                            (el) => el.value.name.value === col.orig
+                        ),
+                        1
+                    );
+                    kanban.cols.value = [...editCols];
+                } else if (col.updated) {
+                    let editCols = kanban.cols.value;
+                    editCols[
+                        editCols.findIndex(
+                            (el) => el.value.name.value === col.orig
+                        )
+                    ].value.name.value = col.updated;
+                    console.log(editCols);
+                    col.orig = col.updated;
+                    col.updated = undefined;
+                }
+            } else {
+                let editCols = kanban.cols.value;
+                editCols.push(signal({
+                    name: signal(col.updated || col.orig),
+                    color: "#FFF",
+                    tasks: signal([])
+                }));
+                kanban.cols.value = [...editCols];
+
+                if (col.updated) {
+                    col.orig = col.updated;
+                    col.updated = undefined;
+                }
+                col.inKanban = true;
+            }
+        });
+
+        // cleanup updatedCols
+        let editCols = updatedCols.value.filter(col => !col.deleted);
+        updatedCols.value = [...editCols];
+    };
+
+    return {
+        kanbanLists,
+        selectedKanban,
+        createBoard,
+        getSelectedTaskStatusList,
+        editKanban,
+    };
 };
 
 export default createKanbanState;

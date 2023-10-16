@@ -1,43 +1,51 @@
 import { checkClientBounds } from "./utils";
-
-// TODO: 
-// Add delete function to mapBoardCols delete-btn
+import { useSignal } from "@preact/signals";
 
 export default function EditBoard({ state }) {
     // global state
     const showEditBoard = state.editBoard.showEditBoard;
-    const { kanbanLists, selectedKanban } = state.kanban;
+    const { kanbanLists, selectedKanban, editKanban } = state.kanban;
 
     // local state
-    const selectedKanbanName = kanbanLists.value[selectedKanban].name.value;
+        kanbanLists.value[selectedKanban].cols.value.map((col) => ({
+            orig: col.value.name.value,
+            inKanban: true,
+            deleted: false,
+        }))
+    let selectedKanbanName = kanbanLists.value[selectedKanban].name.value;
+    const updatedCols = useSignal(kanbanLists.value[selectedKanban].cols.value.map(
+        (col) => ({
+            orig: col.value.name.value,
+            inKanban: true,
+            deleted: false,
+        })
+    ));
 
     const mapBoardCols = (col) => {
-        return (
-            <div>
-                <input
-                    type="text"
-                    value={col.value.name.value}
-                    onChange={(e) => (col.value.name.value = e.target.value)}
-                    placeholder="e.g. Todo"
-                />
-                <img
-                    className="board-col-delete-btn"
-                    src="./assets/icons/icon-cross.svg"
-                    onClick={() => {
-                        // TODO: Force unique names
-                        const updatedBoardCols = newBoardCols.value;
-                        updatedBoardCols.splice(
-                            newBoardCols.value.findIndex(
-                                (found) => found.name === col.value.name
-                            ),
-                            1
-                        );
-                        newBoardCols.value = [...updatedBoardCols];
-                    }}
-                />
-            </div>
-        )
-    }
+        if (!col.deleted) {
+            return (
+                <div>
+                    <input
+                        type="text"
+                        value={col.updated || col.orig}
+                        onChange={(e) => {
+                            col.updated = e.target.value;
+                        }}
+                        placeholder="e.g. Todo"
+                    />
+                    <img
+                        className="board-col-delete-btn"
+                        src="./assets/icons/icon-cross.svg"
+                        onClick={() => {
+                            col.deleted = true;
+                            // forces rerender
+                            updatedCols.value = [...updatedCols.value];
+                        }}
+                    />
+                </div>
+            );
+        }
+    };
 
     return (
         <div
@@ -47,27 +55,43 @@ export default function EditBoard({ state }) {
                 checkClientBounds(
                     e,
                     showEditBoard,
-                    document.querySelector("#edit-board-list"),
-                )
+                    document.querySelector("#edit-board-list")
+                );
             }}
         >
             <div className="modal-list" id="edit-board-list">
                 <h3>Edit Board</h3>
                 <h4>Board Name</h4>
-                <input type="text" placeholder="e.g. Web Design" value={selectedKanbanName} />
+                <input
+                    type="text"
+                    placeholder="e.g. Web Design"
+                    value={selectedKanbanName}
+                    onChange={(e) => (selectedKanbanName = e.target.value)}
+                />
                 <h4>Board Columns</h4>
-                {kanbanLists.value[selectedKanban.value].cols.value.map(col => {
+                {updatedCols.value.map((col) => {
                     return mapBoardCols(col);
                 })}
-                <button id="add-column-btn" onClick={() => {}}>
+                <button
+                    id="add-column-btn"
+                    onClick={() => {
+                        updatedCols.value = [
+                            ...updatedCols.value,
+                            { orig: "", deleted: false },
+                        ];
+                    }}
+                >
                     <img src="./assets/icons/icon-add-board-mobile.svg" />
                     Add New Column
                 </button>
                 <button
                     id="add-board-btn"
-                    onClick={() => {}}
+                    onClick={() => {
+                        editKanban(selectedKanbanName, updatedCols);
+                        showEditBoard.value = false;
+                    }}
                 >
-                    Create New Board
+                    Save Changes
                 </button>
             </div>
         </div>
