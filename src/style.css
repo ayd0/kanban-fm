@@ -109,6 +109,7 @@ body {
 	align-items: center;
 	background-color: var(--components-color);
 	padding: var(--board-spacing);
+	padding-inline-end: 0;
 }
 
 #logo {
@@ -129,7 +130,11 @@ body {
 	border-radius: 3ch;
 	background: var(--main-purple);
 	margin-inline-start: auto;
-	margin-inline-end: var(--board-spacing);
+	/*margin-inline-end: var(--board-spacing);*/
+}
+
+#board-settings {
+	margin: var(--board-spacing);
 }
 
 /* SIDEBAR > */
@@ -278,6 +283,7 @@ body {
 	width: 100%;
 	background-color: var(--components-color);
 	border-block-end: .3ch solid var(--lines-color);
+	padding-block: 1rem;
 }
 
 #logo-divider {
@@ -615,6 +621,29 @@ body {
 }
 
 /* TASK END */
+/* BOARD MODAL BEGIN */
+
+#board-modal {
+	width: 9rem;
+	background-color: var(--subcomponent-color);
+	position: absolute;
+	top: 4.5rem;
+	right: 2ch;
+	display: block;
+	padding-inline: 1rem;
+	border-radius: 1ch;
+}
+
+#board-modal p:first-of-type {
+	color: var(--medium-grey);
+}
+
+#board-modal p:last-of-type {
+	color: var(--red);
+}
+
+
+/* BOARD MODAL END */
 
 @media only screen and (min-width: 670px) {
 	#main {
@@ -713,7 +742,6 @@ body {
 		padding-inline: 1rem;
 		border-radius: 3ch;
 		margin-inline-end: 1rem;
-		margin-block: 1.6rem;
 	}
 
 	#topbar-container button img {
@@ -723,6 +751,7 @@ body {
 
 	#topbar-container img {
 		margin-inline-end: 2ch;
+		cursor: pointer;
 	}
 
 	.modal-container {
@@ -732,5 +761,9 @@ body {
 
 	.modal-list {
 		width: 25rem;
+	}
+
+	#board-modal {
+		top: 5rem;
 	}
 }

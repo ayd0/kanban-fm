@@ -8,6 +8,7 @@ import Task from "./components/Task";
 import NewTask from "./components/NewTask";
 import NewBoard from "./components/NewBoard";
 import EditBoard from "./components/EditBoard";
+import BoardSettings from "./components/BoardSettings";
 
 export default function App() {
     // global state
@@ -24,6 +25,7 @@ export default function App() {
                         showNewTask: state.newTask.showNewTask,
                         selectedTaskStatus: state.newTask.selectedTaskStatus,
                     },
+                    showBoardSettings: state.boardSettings.showBoardSettings,
                 }}
             />
             <div id="content-container">
@@ -38,6 +40,8 @@ export default function App() {
                             kanbanLists: state.kanban.kanbanLists,
                         },
                         showNewTask: state.newTask.showNewTask,
+                        showBoardSettings:
+                            state.boardSettings.showBoardSettings,
                     }}
                 />
                 <Kanban
@@ -94,6 +98,11 @@ export default function App() {
                         selectedKanban: state.kanban.selectedKanban,
                         editKanban: state.kanban.editKanban,
                     },
+                }}
+            />
+            <BoardSettings
+                state={{
+                    boardSettings: state.boardSettings,
                 }}
             />
         </div>

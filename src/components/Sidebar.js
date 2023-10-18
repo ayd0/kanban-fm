@@ -7,6 +7,7 @@ export default function Sidebar({ state }) {
     const { kanbanLists, selectedKanban } = state.kanban;
     const { showNewTask, selectedTaskStatus } = state.newTask;
     const showNewBoard = state.showNewBoard;
+    const showBoardSettings = state.showBoardSettings;
 
     // local state
     const mapBoard = (board) => {
@@ -83,6 +84,7 @@ export default function Sidebar({ state }) {
                 <img
                     id="board-settings"
                     src="./assets/icons/icon-vertical-ellipsis.svg"
+                    onClick={() => (showBoardSettings.value = !showBoardSettings.value)}
                 />
                 <div
                     id="board-header-container"
@@ -151,7 +153,9 @@ export default function Sidebar({ state }) {
                 style={`display: ${showSidebar.value ? "none" : "block"}`}
                 onClick={() => (showSidebar.value = true)}
             >
-                <img src="./assets/icons/icon-show-sidebar.svg" />
+                <img
+                    src="./assets/icons/icon-show-sidebar.svg"
+                />
             </div>
         </div>
     );

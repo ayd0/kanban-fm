@@ -117,7 +117,6 @@ const createKanbanState = () => {
                             (el) => el.value.name.value === col.orig
                         )
                     ].value.name.value = col.updated;
-                    console.log(editCols);
                     col.orig = col.updated;
                     col.updated = undefined;
                 }
