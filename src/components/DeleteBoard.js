@@ -26,6 +26,10 @@ export default function DeleteBoard({ state }) {
                 </p>
                 <div id="delete-board-btn-group">
                     <button onClick={() => {
+                        // TODO:
+                        // update state management to get func from kanbanSlice,
+                        // if new board is empty array, update to empty board AND 
+                        // show EditBoard modal
                         let updatedKanban = kanbanLists.value;
                         updatedKanban.splice(selectedKanban.value, 1);
                         console.log(updatedKanban);
