@@ -634,6 +634,10 @@ body {
 	border-radius: 1ch;
 }
 
+#board-modal p {
+	cursor: pointer;
+}
+
 #board-modal p:first-of-type {
 	color: var(--medium-grey);
 }
@@ -642,8 +646,35 @@ body {
 	color: var(--red);
 }
 
-
 /* BOARD MODAL END */
+/* DELETE BOARD BEGIN */
+
+#delete-board-header {
+	color: var(--red);
+}
+
+#delete-board-header + p {
+	margin-block-end: 2rem;
+}
+
+#delete-board-btn-group {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+#delete-board-btn-group button {
+	margin: 0;
+	flex-grow: 1;
+}
+
+#delete-board-btn-group button:first-of-type {
+	margin-inline-end: 1rem;
+	background-color: var(--red);
+	color: var(--white);
+}
+
+/* DELETE BOARD END */
 
 @media only screen and (min-width: 670px) {
 	#main {

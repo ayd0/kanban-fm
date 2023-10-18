@@ -9,6 +9,7 @@ import NewTask from "./components/NewTask";
 import NewBoard from "./components/NewBoard";
 import EditBoard from "./components/EditBoard";
 import BoardSettings from "./components/BoardSettings";
+import DeleteBoard from "./components/DeleteBoard";
 
 export default function App() {
     // global state
@@ -103,6 +104,17 @@ export default function App() {
             <BoardSettings
                 state={{
                     boardSettings: state.boardSettings,
+                    showEditBoard: state.editBoard.showEditBoard,
+                    showDeleteBoard: state.deleteBoard.showDeleteBoard,
+                }}
+            />
+            <DeleteBoard
+                state={{
+                    deleteBoard: state.deleteBoard,
+                    kanban: {
+                        kanbanLists: state.kanban.kanbanLists,
+                        selectedKanban: state.kanban.selectedKanban,
+                    },
                 }}
             />
         </div>

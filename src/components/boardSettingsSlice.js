@@ -1,7 +1,7 @@
 import { signal } from "@preact/signals"
 
 const createBoardSettingsState = () => {
-    const showBoardSettings = signal(true); 
+    const showBoardSettings = signal(false); 
 
     return { showBoardSettings };
 }

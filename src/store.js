@@ -5,6 +5,7 @@ import createTaskState from "./components/taskSlice";
 import createNewBoardState from "./components/newBoardSlice";
 import createEditBoardState from "./components/editBoardSlice";
 import createBoardSettingsState from "./components/boardSettingsSlice";
+import createDeleteBoardState from "./components/deleteBoardSlice";
 
 const createStore = () => ({
     sidebar: createSidebarState(),
@@ -14,6 +15,7 @@ const createStore = () => ({
     task: createTaskState(),
     editBoard: createEditBoardState(),
     boardSettings: createBoardSettingsState(),
+    deleteBoard: createDeleteBoardState(),
 });
 
 export default createStore;
