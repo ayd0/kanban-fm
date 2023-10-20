@@ -39,6 +39,8 @@ const createNewTaskState = () => {
             ].value.tasks.value,
             newTask,
         ];
+
+        console.log(kanbanLists.value);
     };
 
     return {

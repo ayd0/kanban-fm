@@ -10,6 +10,7 @@ const createNewBoard = (newBoardName, boardCols) => {
 const createNewBoardState = () => {
     const showNewBoard = signal(false);
     const newBoardName = signal("");
+    // TRACKING: Kanban task duplication issue -> 
     const newBoardCols = signal([
         signal({
             name: signal("Todo"),

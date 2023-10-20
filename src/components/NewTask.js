@@ -5,6 +5,8 @@ import { checkClientBounds } from "./utils";
 // * Make showNewTask and createNewTask state changes reset fields
 // * Maintain field state between addition and deletion of fields
 // -- This must be tracked as local state
+// * Fix issue with adding tasks to dynamically added  boards which results in 
+// -- duplicate tasks throughout all dynamically added boards
 
 export default function NewTask({ state }) {
     // global state

@@ -1,7 +1,7 @@
 import { signal } from "@preact/signals";
 
 const createDeleteBoardState = () => {
-    const showDeleteBoard = signal(true);
+    const showDeleteBoard = signal(false);
     
     return { showDeleteBoard };
 }
