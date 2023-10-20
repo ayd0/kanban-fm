@@ -142,12 +142,27 @@ const createKanbanState = () => {
         updatedCols.value = [...editCols];
     };
 
+    const deleteKanban = () => {
+        if (kanbanLists.value.length > 1) {
+            let kanbans = kanbanLists.value;
+            kanbans.splice(selectedKanban.value, 1);
+            selectedKanban.value = 0;
+            kanbans.forEach((kanban, idx) => (kanban.id = idx));
+            kanbanLists.value = [...kanbans];
+            return true;
+        } else {
+            throw new Error("Can't delete when only one Kanban board exists!");
+        }
+        return false;
+    }
+
     return {
         kanbanLists,
         selectedKanban,
         createBoard,
         getSelectedTaskStatusList,
         editKanban,
+        deleteKanban,
     };
 };
 

@@ -3,7 +3,7 @@ import { checkClientBounds } from "./utils";
 export default function DeleteBoard({ state }) {
     // global state
     const showDeleteBoard = state.deleteBoard.showDeleteBoard;
-    const { kanbanLists, selectedKanban } = state.kanban;
+    const deleteKanban = state.kanban.deleteKanban;
 
     return (
         <div
@@ -26,16 +26,16 @@ export default function DeleteBoard({ state }) {
                 </p>
                 <div id="delete-board-btn-group">
                     <button onClick={() => {
-                        // TODO:
-                        // update state management to get func from kanbanSlice,
-                        // if new board is empty array, update to empty board AND 
-                        // show EditBoard modal
-                        let updatedKanban = kanbanLists.value;
-                        updatedKanban.splice(selectedKanban.value, 1);
-                        console.log(updatedKanban);
-                        selectedKanban.value = 0;
-                        kanbanLists.value = [...updatedKanban];
-                    }}>Delete</button>
+                        try {
+                            deleteKanban();
+                        } catch (e) {
+                            // TODO: Replace alert with component
+                            // add screen-shake to delete board and red popover type box
+                            alert(e);
+                        }
+                        showDeleteBoard.value = false;
+                    }
+                    }>Delete</button>
                     <button onClick={() => (showDeleteBoard.value = false)}>
                         Cancel
                     </button>

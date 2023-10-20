@@ -10,7 +10,7 @@ export default function Sidebar({ state }) {
     const showBoardSettings = state.showBoardSettings;
 
     // local state
-    const mapBoard = (board) => {
+    const mapBoard = (board, idx) => {
         let imageStyle = selectedKanban.value === board.id ? "-selected" : "";
         return (
             <div

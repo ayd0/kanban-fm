@@ -112,8 +112,7 @@ export default function App() {
                 state={{
                     deleteBoard: state.deleteBoard,
                     kanban: {
-                        kanbanLists: state.kanban.kanbanLists,
-                        selectedKanban: state.kanban.selectedKanban,
+                        deleteKanban: state.kanban.deleteKanban,
                     },
                 }}
             />
