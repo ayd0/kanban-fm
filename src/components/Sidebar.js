@@ -3,7 +3,8 @@ import { checkClientBounds } from "./utils";
 
 export default function Sidebar({ state }) {
     // global state
-    const { showBoardModal, showSidebar, themeDark, resetSelectedTaskStatus } = state.sidebar;
+    const { showBoardModal, showSidebar, themeDark, resetSelectedTaskStatus } =
+        state.sidebar;
     const { kanbanLists, selectedKanban } = state.kanban;
     const { showNewTask, selectedTaskStatus } = state.newTask;
     const showNewBoard = state.showNewBoard;
@@ -35,12 +36,14 @@ export default function Sidebar({ state }) {
     };
 
     themeVars.forEach((theme) => {
-        document
-            .querySelector(":root")
-            .style.setProperty(
-                theme.name,
-                themeDark.value ? theme.dark : theme.light
-            );
+        if (typeof window !== "undefined") {
+            window.document
+                .querySelector(":root")
+                .style.setProperty(
+                    theme.name,
+                    themeDark.value ? theme.dark : theme.light
+                );
+        }
     });
 
     return (
@@ -84,7 +87,9 @@ export default function Sidebar({ state }) {
                 <img
                     id="board-settings"
                     src="./assets/icons/icon-vertical-ellipsis.svg"
-                    onClick={() => (showBoardSettings.value = !showBoardSettings.value)}
+                    onClick={() =>
+                        (showBoardSettings.value = !showBoardSettings.value)
+                    }
                 />
                 <div
                     id="board-header-container"
@@ -153,9 +158,7 @@ export default function Sidebar({ state }) {
                 style={`display: ${showSidebar.value ? "none" : "block"}`}
                 onClick={() => (showSidebar.value = true)}
             >
-                <img
-                    src="./assets/icons/icon-show-sidebar.svg"
-                />
+                <img src="./assets/icons/icon-show-sidebar.svg" />
             </div>
         </div>
     );

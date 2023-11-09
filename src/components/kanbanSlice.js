@@ -148,6 +148,7 @@ const createKanbanState = () => {
             kanbans.splice(selectedKanban.value, 1);
             selectedKanban.value = 0;
             kanbans.forEach((kanban, idx) => (kanban.id = idx));
+            // arbitrary ^ will be replaced with DB integration
             kanbanLists.value = [...kanbans];
             return true;
         } else {

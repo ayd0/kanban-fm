@@ -11,6 +11,8 @@ const createNewBoardState = () => {
     const showNewBoard = signal(false);
     const newBoardName = signal("");
     // TRACKING: Kanban task duplication issue -> 
+    // arg in createBoard() in NewBoard
+    // func in kanbanSlice
     const newBoardCols = signal([
         signal({
             name: signal("Todo"),
